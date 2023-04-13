@@ -13,7 +13,6 @@
 
 <body>
     @yield('menu')
-    @yield('main')
 </body>
 
 </html>
