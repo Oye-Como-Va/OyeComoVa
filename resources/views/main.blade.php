@@ -1,16 +1,18 @@
 @extends('templates.general')
 
 @section('main')
-    <div class="main">
+    <div class="workingArea">
         <div class="row">
             <div class="col-12 col-sm-4 mb-4 cardContainer">
                 <!-- Card 1 -->
-                <section class="card">
-                    <div class="icon d-flex flex-column">
-                        <img src="{{ URL::asset('img/briefcase.png') }}" class="svg" />
-                        <p>Working Area</p>
-                    </div>
-                </section>
+                <a href="{{ route('workingArea') }}">
+                    <section class="card">
+                        <div class="icon d-flex flex-column">
+                            <img src="{{ URL::asset('img/briefcase.png') }}" class="svg" />
+                            <p>Working Area</p>
+                        </div>
+                    </section>
+                </a>
             </div>
             <div class="col-12 col-sm-4 mb-4 cardContainer">
                 <!-- Card 2 -->

@@ -185,6 +185,11 @@ a {
     font-size: 1rem;
 }
 
+/*WORKING AREA*/
+.timeControl {
+    background-color: rgb(219, 215, 215);
+}
+
 @media screen and (min-width: 768px) {
     .icon {
         width: 100%;
@@ -231,6 +236,14 @@ a {
         display: grid;
         margin: 0 auto;
         padding: 5rem;
+        gap: 7rem;
+    }
+
+    .workingArea {
+        width: 100%;
+        display: flex;
+        margin: 0 auto;
+        padding: 1.5rem;
         gap: 7rem;
     }
 }

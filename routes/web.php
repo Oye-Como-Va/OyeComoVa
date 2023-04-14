@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('main');
 });
+Route::get('/workingArea', function () {
+    return view('workingArea');
+})->name('workingArea');;

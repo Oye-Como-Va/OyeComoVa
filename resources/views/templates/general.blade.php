@@ -25,5 +25,6 @@
             </nav>
         </div>
         @yield('main')
+        @yield('workingArea')
     </div>
 @endsection
