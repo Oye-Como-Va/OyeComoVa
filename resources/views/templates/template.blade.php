@@ -12,7 +12,8 @@
 </head>
 
 <body>
-    @yield('menu')
+    @yield('landing')
+    @yield('general')
 </body>
 
 </html>
