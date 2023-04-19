@@ -1,7 +1,7 @@
 @extends('templates.general')
 
 @section('main')
-    <div class="workingArea">
+    <div class="main">
         <div class="row">
             <div class="col-12 col-sm-4 mb-4 cardContainer">
                 <!-- Card 1 -->
@@ -62,6 +62,5 @@
                 </section>
             </div>
         </div>
-    </div>
     </div>
 @endsection
