@@ -1,5 +1,4 @@
 @extends('templates.general')
-
 @section('main')
     <div class="workingArea">
         <div class="row">
