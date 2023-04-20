@@ -1,4 +1,4 @@
-@extends('templates.template')
+@extends('templates.loginTemplate')
 @section('register')
 <div class="limiter">
 
