@@ -6,19 +6,24 @@
         <p>Organiza tu tiempo, optimiza tu rendimiento</p>
         <p>Y que la próxima vez que te pregunten: <i>Oye cómo va</i> puedas contestar Pitumba</p>
     </div>
-    <div class="vh-100 bg-info d-flex flex-lg-row flex-column justify-content-around align-items-center gap-5 p-5">
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <p>1</p>
-            <p>Planifica tu calendario añadiendo tareas</p>
+
+    <div class="instructions vh-100">
+        <div>
+            <span>1</span>
+            <p>Planifica tu calendario por horas y tareas</p>
         </div>
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <p>2</p>
-            <p>Entra en tu Working Area para poner en marcha tus tareas. Toma notas mientras nosotros registramos tu tiempo
+        <div>
+            <span>2</span>
+            <p>Usa el Working Area para iniciar el tiempo
             </p>
         </div>
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <p>4</p>
-            <p>Sácale partido a nuestras herramientas: añade cursos, consulta estadísticas </p>
+        <div>
+            <span>3</span>
+            <p>Comprueba tu rendimiento </p>
         </div>
+    </div>
+
+    <div class = "invite vh-100">
+        
     </div>
 @endsection

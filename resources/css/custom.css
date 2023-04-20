@@ -21,6 +21,7 @@
 ::before,
 ::after {
     box-sizing: border-box;
+    font-family: var(--body-font);
 }
 .container {
     position: relative;
@@ -49,7 +50,7 @@ a {
     transition: 0.5s;
 }
 
-.header_title{
+.header_title {
     font-family: var(--brand-font);
 }
 .header_toggle {
@@ -195,6 +196,46 @@ a {
     font-size: 1rem;
 }
 
+/* LANDING PAGE*/
+.instructions {
+    background-color: var(--dark-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
+    justify-content: center;
+    gap: 1rem; 
+}
+
+.instructions div {
+    margin: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.instructions span {
+    font-family: var(--brand-font);
+    font-weight: bolder;
+    font-size: 4rem;
+}
+.instructions p {
+    text-align: center;
+}
+
+.instructions div {
+    background-color:var(--first-color-dark);
+    filter: drop-shadow(0px 0px 5px var(--first-color-light));
+    box-shadow: #333133 1px 0px 10px 0px;
+    border-radius: 0.5rem;
+    color: white; 
+}
+
+.invite{
+    background-color: var(--first-color-dark);
+}
+
+
 /*WORKING AREA*/
 .timeControl {
     background-color: rgb(219, 215, 215);
@@ -287,5 +328,21 @@ a {
         margin: 0 auto;
         padding: 1.5rem;
         gap: 7rem;
+    }
+
+    .instructions {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;    
+    }
+
+    .instructions div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 3rem; 
     }
 }
