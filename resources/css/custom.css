@@ -197,13 +197,23 @@ a {
 }
 
 /* LANDING PAGE*/
+.welcome {
+    background: linear-gradient(
+        149deg,
+        #5db6d9 0%,
+        #45aed8 50%,
+        #6082a7 100%,
+        #6684a5 100%
+    );
+    
+}
 .instructions {
     background-color: var(--dark-shadow);
     display: flex;
     flex-direction: column;
     align-items: space-evenly;
     justify-content: center;
-    gap: 1rem; 
+    gap: 1rem;
 }
 
 .instructions div {
@@ -212,6 +222,13 @@ a {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: linear-gradient(
+        149deg,
+        #5db6d9 0%,
+        #45aed8 50%,
+        #6082a7 100%,
+        #6684a5 100%
+    );
 }
 
 .instructions span {
@@ -224,17 +241,16 @@ a {
 }
 
 .instructions div {
-    background-color:var(--first-color-dark);
+    background-color: var(--first-color-dark);
     filter: drop-shadow(0px 0px 5px var(--first-color-light));
     box-shadow: #333133 1px 0px 10px 0px;
     border-radius: 0.5rem;
-    color: white; 
+    color: white;
 }
 
-.invite{
+.invite {
     background-color: var(--first-color-dark);
 }
-
 
 /*WORKING AREA*/
 .timeControl {
@@ -335,7 +351,7 @@ a {
         grid-template-columns: 1fr 1fr 1fr;
         align-items: center;
         justify-content: center;
-        gap: 3rem;    
+        gap: 3rem;
     }
 
     .instructions div {
@@ -343,11 +359,11 @@ a {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin: 3rem; 
+        margin: 3rem;
     }
 }
 
-.brandH1{
+.brandH1 {
     font-family: var(--brand-font);
     text-align: center;
 }

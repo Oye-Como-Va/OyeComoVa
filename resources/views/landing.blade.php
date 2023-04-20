@@ -1,7 +1,7 @@
 @extends('templates.template')
 
 @section('landing')
-    <div class="d-flex justify-content-center flex-column align-items-center vh-100">
+    <div class="welcome d-flex justify-content-center flex-column align-items-center vh-100">
         <h1 class="header_title">Oye cómo va</h1>
         <p>Organiza tu tiempo, optimiza tu rendimiento</p>
         <p>Y que la próxima vez que te pregunten: <i>Oye cómo va</i> puedas contestar Pitumba</p>
@@ -23,7 +23,7 @@
         </div>
     </div>
 
-    <div class = "invite vh-100">
+    <div class="invite vh-100">
         
     </div>
 @endsection
