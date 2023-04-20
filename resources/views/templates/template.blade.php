@@ -14,6 +14,7 @@
 <body>
     @yield('landing')
     @yield('general')
+    @yield('register')
 </body>
 
 </html>

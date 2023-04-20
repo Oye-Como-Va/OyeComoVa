@@ -24,3 +24,7 @@ Route::get('/main', function () {
 Route::get('/workingArea', function () {
     return view('workingArea');
 })->name('workingArea');;
+
+Route::get('/register', function () {
+    return view('register');
+});

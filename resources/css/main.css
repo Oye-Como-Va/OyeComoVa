@@ -227,10 +227,10 @@ iframe {
   background: rgb(255, 0, 63);
   background: linear-gradient(
     149deg,
-    rgba(255, 0, 63, 1) 0%,
-    rgba(233, 13, 67, 1) 50%,
-    rgba(88, 3, 24, 1) 100%,
-    rgba(204, 21, 219, 0.5494572829131652) 100%
+    #5db6d9 0%,
+    #45aed8 50%,
+    #6082a7 100%,
+    #6684a5 100%
   );
 }
 
@@ -255,14 +255,12 @@ width: 90%!important;
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: 1rem;
-  background-color: #fff;
   margin: 0 auto;
 }
 
 .login100-form-title {
-  font-family: Poppins-Medium;
+  font-family: "Source Sans Pro", sans-serif;
   font-size: 30px;
   color: #fff;
   line-height: 1.2;
@@ -458,7 +456,7 @@ width: 90%!important;
   height: 50px;
   border-radius: 25px;
 
-  background: #000;
+  background: #85C88A;
   position: relative;
   z-index: 1;
 

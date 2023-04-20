@@ -289,3 +289,8 @@ a {
         gap: 7rem;
     }
 }
+
+.brandH1{
+    font-family: var(--brand-font);
+    text-align: center;
+}

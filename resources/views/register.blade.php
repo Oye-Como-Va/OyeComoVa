@@ -1,13 +1,15 @@
 @extends('templates.template')
-@section('menu')
+@section('register')
 <div class="limiter">
-    <div class="container-login100" style="background-image: url({{URL::asset('bg.jpeg')}});">
+
+    <div class="container-login100" style="background-image: url({{URL::asset('fondo.jpg')}});">
         <div class="wrap-login100">
-            <form method="post" action="{{route('inicia-sesion')}}" class="login100-form validate-form">
+            <span class="login100-form-logo">
+                <h1 class="brandH1">Oye como va</h1>
+            </span>
+            <form method="post" action="" class="login100-form validate-form">
                 @csrf
-                <span class="login100-form-logo">
-                    <h1>Oye como va</h1>
-                </span>
+
 
                 <span class="login100-form-title p-b-34 p-t-27">
                     Log in
