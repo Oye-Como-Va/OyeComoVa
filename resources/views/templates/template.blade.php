@@ -8,6 +8,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.scss', 'resources/css/custom.css'])
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
         crossorigin="anonymous">
+        
 
 </head>
 
