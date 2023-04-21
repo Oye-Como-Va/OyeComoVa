@@ -21,8 +21,12 @@ Route::get('/main', function () {
     return view('main');
 });
 
+Route::get('/calendar', function () {
+    return view('calendar');
+});
+
 Route::get('/workingArea', function () {
-    return view('workingArea');
+    return view('workingAreaActive');
 })->name('workingArea');;
 
 Route::get('/register', function () {

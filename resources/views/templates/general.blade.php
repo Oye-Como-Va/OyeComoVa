@@ -27,6 +27,7 @@
             </nav>
         </div>
         @yield('main')
-        @yield('workingArea')
+        @yield('calendar')
+        @yield('workingAreaActive')
     </div>
 @endsection

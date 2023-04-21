@@ -21,6 +21,9 @@
 ::before,
 ::after {
     box-sizing: border-box;
+}
+
+body {
     font-family: var(--body-font);
 }
 .container {
@@ -56,7 +59,6 @@ a {
 .landing h1 {
     text-shadow: white 1px 1px 2px;
 }
-
 
 .welcome img {
     filter: drop-shadow(5px 5px 10px #ffffff);
@@ -162,9 +164,7 @@ a {
 }
 .card {
     position: relative;
-    box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
     border-radius: 0.9rem;
-    background-color: var(--red-card);
     color: var(--text);
     cursor: pointer;
     display: flex;
@@ -172,27 +172,32 @@ a {
     width: 10rem;
     height: 7rem;
 }
+.cardContainer:hover .card {
+    box-shadow: 5px 5px 1px var(--first-color-light);
+    transform: translateY(-0.5rem);
+}
+
+.cardContainer:hover p {
+    color: var(--first-color-light);
+}
+
+.card p {
+    margin: 0;
+}
 
 .card img {
     max-width: 80%;
     width: 25%;
-    padding: 0.1rem;
     user-select: none;
     filter: blur(3);
 }
 
 .icon {
     width: 100%;
-    margin-top: 35%;
     justify-content: center;
     align-items: center;
-    transform: translate(0, -1.5rem);
     transition: transform 500ms ease-in-out;
     filter: drop-shadow(5px 10px 15px rgba(8, 9, 13, 0.4));
-}
-
-.card:hover .icon {
-    transform: translate(-1.5rem, -7rem) rotate(-20deg);
 }
 
 .svg {
@@ -281,17 +286,16 @@ button:hover {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    
 }
 
-.landing h1{
+.landing h1 {
     font-size: 4rem;
 }
-.landing h4{
+.landing h4 {
     font-size: 1.2rem;
 }
 
-.welcome img{
+.welcome img {
     max-width: fit-content;
 }
 
@@ -342,7 +346,23 @@ button:hover {
 
 /*WORKING AREA*/
 .timeControl {
-    background-color: rgb(219, 215, 215);
+    background: #333133ea;
+    display: flex;
+    width: 100%;
+    height: 5rem;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 1rem;
+    color: var(--first-color-light);
+}
+.timeControl span {
+    font-size: 1rem;
+}
+
+/* CALENDAR */
+
+.calendarContainer {
+    height: 80vh;
 }
 
 @media screen and (min-width: 768px) {
@@ -391,35 +411,18 @@ button:hover {
     }
 
     .card {
-        position: relative;
-        box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
-        border-radius: 0.9rem;
-        background-color: var(--red-card);
-        color: var(--text);
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
         width: 100%;
         height: 10rem;
     }
 
     .card img {
         max-width: 50%;
-        width: 25%;
         padding: 1%;
-        user-select: none;
-        filter: blur(3);
     }
 
     .icon {
-        width: 100%;
-        padding: 1rem;
         display: flex;
-        margin-top: 4rem;
         justify-content: center;
-        transform: translate(0, -1.5rem);
-        transition: transform 500ms ease-in-out;
-        filter: drop-shadow(5px 10px 15px rgba(8, 9, 13, 0.4));
     }
 
     .icon p {
@@ -467,6 +470,14 @@ button:hover {
         align-items: center;
         justify-content: center;
         margin: 3rem;
+    }
+
+    .timeControl span {
+        font-size: 2rem;
+    }
+
+    .timeControl {
+        padding: 3.5rem;
     }
 }
 
