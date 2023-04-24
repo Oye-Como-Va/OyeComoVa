@@ -1,5 +1,4 @@
 import "./bootstrap";
-import "boxicons";
 
 document.addEventListener("DOMContentLoaded", function (event) {
     const showNavbar = (toggleId, navId, bodyId, headerId) => {
@@ -16,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 // change icon
                 toggle.classList.toggle("bx-x");
                 // add padding to body
-                bodypd.classList.toggle("body-pd");
+                bodypd.classList.toggle("body-pd");                
                 // add padding to header
                 headerpd.classList.toggle("body-pd");
             });

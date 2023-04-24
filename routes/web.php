@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +18,10 @@ Route::get('/', function () {
     return view('landing');
 });
 
-Route::get('/main', function () {
-    return view('main');
-});
+
+Route::get('/login', function () {
+    return view('login');
+})->name('login');
 
 Route::get('/calendar', function () {
     return view('calendar');
@@ -31,4 +33,8 @@ Route::get('/workingArea', function () {
 
 Route::get('/register', function () {
     return view('register');
-});
+})->name('registro');
+
+Route::get('/home', function () {
+    return view('/main');
+})->middleware('auth');

@@ -6,7 +6,11 @@
             <div class="header_title">
                 <h1>Oye cómo va</h1>
             </div>
-            <div class="header_img"> <img src="{{ URL::asset('img/user.png') }}" alt=""> </div>
+            <div class="header_img"> <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><img src="{{ URL::asset('img/user.png') }}" alt=""></a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+           </div>
         </header>
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
