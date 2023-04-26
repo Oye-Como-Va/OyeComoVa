@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,14 +19,16 @@ Route::get('/', function () {
     return view('landing');
 });
 
-
 Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::get('/calendar', function () {
-    return view('calendar');
-});
+Route::prefix('/calendar')->group(
+    function () {
+        Route::get('/', [TasksController::class, 'show_tasks'])->name('calendar');
+        Route::post('/create', [TasksController::class, 'create_task'])->name('task.create');
+    }
+);
 
 Route::get('/workingArea', function () {
     return view('workingAreaActive');

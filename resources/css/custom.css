@@ -364,6 +364,15 @@ button:hover {
 .calendarContainer {
     height: 80vh;
 }
+.fc-view-container {
+    width: 100% !important;
+}
+
+.fc .fc-button {
+    font-size: 0.6rem;
+}
+
+
 
 @media screen and (min-width: 768px) {
     .container {
@@ -478,6 +487,12 @@ button:hover {
 
     .timeControl {
         padding: 3.5rem;
+    }
+
+    /*CALENDAR*/
+
+    .fc .fc-button {
+        font-size: 1rem;
     }
 }
 
