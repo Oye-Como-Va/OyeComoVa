@@ -1,4 +1,4 @@
-import "./bootstrap";
+import * as bootstrap from "bootstrap";
 
 document.addEventListener("DOMContentLoaded", function (event) {
     const showNavbar = (toggleId, navId, bodyId, headerId) => {
@@ -11,11 +11,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
         if (toggle && nav && bodypd && headerpd) {
             toggle.addEventListener("click", () => {
                 // show navbar
-                nav.classList.toggle("show");
+                nav.classList.toggle("showMenu");
                 // change icon
                 toggle.classList.toggle("bx-x");
                 // add padding to body
-                bodypd.classList.toggle("body-pd");                
+                bodypd.classList.toggle("body-pd");
                 // add padding to header
                 headerpd.classList.toggle("body-pd");
             });
@@ -36,4 +36,22 @@ document.addEventListener("DOMContentLoaded", function (event) {
     linkColor.forEach((l) => l.addEventListener("click", colorLink));
 
     // Your code to run since DOM is loaded and ready
+
+    const myModal = new bootstrap.Modal(document.getElementById("createTask"));
+    console.log(myModal);
+    let calendarEl = document.getElementById("calendar");
+    let calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: "dayGridMonth",
+        height: "80vh",
+        locale: "es",
+        headerToolbar: {
+            center: "title",
+            right: "dayGridMonth timeGridWeek",
+        },
+        dateClick: function (info) {
+            document.getElementById("date").value = info.dateStr;
+            myModal.show();
+        },
+    });
+    calendar.render();
 });
