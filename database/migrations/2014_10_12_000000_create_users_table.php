@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone');
             $table->boolean('admin')->default(0);
+            $table->string('completed_tasks');
+            $table->string('pending_tasks');
+            $table->string('respected_tasks');
+            $table->string('unrespected_tasks');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
