@@ -22,6 +22,10 @@
 ::after {
     box-sizing: border-box;
 }
+
+body {
+    font-family: var(--body-font);
+}
 .container {
     position: relative;
     margin: calc(var(--header-height) + 2rem) 0 0 0;
@@ -49,8 +53,15 @@ a {
     transition: 0.5s;
 }
 
-.header_title{
+.header_title {
     font-family: var(--brand-font);
+}
+.landing h1 {
+    text-shadow: white 1px 1px 2px;
+}
+
+.welcome img {
+    filter: drop-shadow(5px 5px 10px #ffffff);
 }
 .header_toggle {
     color: var(--first-color-light);
@@ -117,7 +128,7 @@ a {
 .nav_icon {
     font-size: 1.25rem;
 }
-.show {
+.showMenu {
     left: 0;
 }
 .body-pd {
@@ -153,9 +164,7 @@ a {
 }
 .card {
     position: relative;
-    box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
     border-radius: 0.9rem;
-    background-color: var(--red-card);
     color: var(--text);
     cursor: pointer;
     display: flex;
@@ -163,27 +172,32 @@ a {
     width: 10rem;
     height: 7rem;
 }
+.cardContainer:hover .card {
+    box-shadow: 5px 5px 1px var(--first-color-light);
+    transform: translateY(-0.5rem);
+}
+
+.cardContainer:hover p {
+    color: var(--first-color-light);
+}
+
+.card p {
+    margin: 0;
+}
 
 .card img {
     max-width: 80%;
     width: 25%;
-    padding: 0.1rem;
     user-select: none;
     filter: blur(3);
 }
 
 .icon {
     width: 100%;
-    margin-top: 35%;
     justify-content: center;
     align-items: center;
-    transform: translate(0, -1.5rem);
     transition: transform 500ms ease-in-out;
     filter: drop-shadow(5px 10px 15px rgba(8, 9, 13, 0.4));
-}
-
-.card:hover .icon {
-    transform: translate(-1.5rem, -7rem) rotate(-20deg);
 }
 
 .svg {
@@ -194,11 +208,171 @@ a {
 .icon p {
     font-size: 1rem;
 }
+button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.container-login100-form-btn {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.login100-form-btn {
+    font-size: 16px;
+    color: #555555;
+    line-height: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    min-width: 120px;
+    height: 50px;
+    border-radius: 25px;
+    background: #85c88a;
+    position: relative;
+    z-index: 1;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.login100-form-btn::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    border-radius: 25px;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    opacity: 1;
+
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+
+.login100-form-btn:hover {
+    color: #fff;
+}
+
+.login100-form-btn:hover:before {
+    opacity: 0;
+}
+
+/* LANDING PAGE*/
+.welcome {
+    background: linear-gradient(
+        149deg,
+        #5db6d9 0%,
+        #45aed8 50%,
+        #6082a7 100%,
+        #6684a5 100%
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.landing h1 {
+    font-size: 4rem;
+}
+.landing h4 {
+    font-size: 1.2rem;
+}
+
+.welcome img {
+    max-width: fit-content;
+}
+
+.instructions {
+    background-color: var(--dark-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.instructions div {
+    margin: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(
+        149deg,
+        #5db6d9 0%,
+        #45aed8 50%,
+        #6082a7 100%,
+        #6684a5 100%
+    );
+}
+
+.instructions span {
+    font-family: var(--brand-font);
+    font-weight: bolder;
+    font-size: 4rem;
+}
+.instructions p {
+    text-align: center;
+}
+
+.instructions div {
+    background-color: var(--first-color-dark);
+    filter: drop-shadow(0px 0px 5px var(--first-color-light));
+    box-shadow: #333133 1px 0px 10px 0px;
+    border-radius: 0.5rem;
+    color: white;
+}
+
+.invite {
+    background-color: var(--first-color-dark);
+}
 
 /*WORKING AREA*/
 .timeControl {
-    background-color: rgb(219, 215, 215);
+    background: #333133ea;
+    display: flex;
+    width: 100%;
+    height: 5rem;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 1rem;
+    color: var(--first-color-light);
 }
+.timeControl span {
+    font-size: 1rem;
+}
+
+/* CALENDAR */
+
+.calendarContainer {
+    height: 80vh;
+}
+.fc-view-container {
+    width: 100% !important;
+}
+
+.fc .fc-button {
+    font-size: 0.6rem;
+}
+
+
 
 @media screen and (min-width: 768px) {
     .container {
@@ -222,7 +396,7 @@ a {
         left: 0;
         padding: 1rem 1rem 0 0;
     }
-    .show {
+    .showMenu {
         width: calc(var(--nav-width) + 156px);
     }
     .body-pd {
@@ -246,39 +420,41 @@ a {
     }
 
     .card {
-        position: relative;
-        box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
-        border-radius: 0.9rem;
-        background-color: var(--red-card);
-        color: var(--text);
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
         width: 100%;
         height: 10rem;
     }
 
     .card img {
         max-width: 50%;
-        width: 25%;
         padding: 1%;
-        user-select: none;
-        filter: blur(3);
     }
 
     .icon {
-        width: 100%;
-        padding: 1rem;
         display: flex;
-        margin-top: 4rem;
         justify-content: center;
-        transform: translate(0, -1.5rem);
-        transition: transform 500ms ease-in-out;
-        filter: drop-shadow(5px 10px 15px rgba(8, 9, 13, 0.4));
     }
 
     .icon p {
         font-size: larger;
+    }
+
+    .welcome {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 0 6rem;
+    }
+
+    .landing > h1 {
+        font-size: 3.5rem;
+    }
+    .landing h4 {
+        font-size: 1.6rem;
+    }
+
+    .landing button {
+        font-size: 1.2rem;
     }
 
     .workingArea {
@@ -288,4 +464,39 @@ a {
         padding: 1.5rem;
         gap: 7rem;
     }
+
+    .instructions {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        align-items: center;
+        justify-content: center;
+        gap: 3rem;
+    }
+
+    .instructions div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 3rem;
+    }
+
+    .timeControl span {
+        font-size: 2rem;
+    }
+
+    .timeControl {
+        padding: 3.5rem;
+    }
+
+    /*CALENDAR*/
+
+    .fc .fc-button {
+        font-size: 1rem;
+    }
+}
+
+.brandH1 {
+    font-family: var(--brand-font);
+    text-align: center;
 }

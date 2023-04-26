@@ -19,7 +19,9 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
+        'phone',
         'password',
     ];
 
@@ -44,7 +46,7 @@ class User extends Authenticatable
 
     public function courses()
     {
-        return $this->hasMany(Course::class);
+        return $this->belongsToMany(Course::class);
     }
     public function calendars()
     {
@@ -56,7 +58,7 @@ class User extends Authenticatable
     }
     public function tasks()
     {
-        return $this->belongsToMany(Task::class);
+        return $this->belongsToMany(Task::class)->withTimestamps()->withPivot('date', 'start_time', 'end_time');
     }
     public function achievements()
     {

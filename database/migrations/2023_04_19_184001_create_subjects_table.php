@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('color');
             $table->string('description');
             $table->double('qualification');
-            $table->unsignedBigInteger('period_id');
-            $table->foreign('period_id')->references('id')->on('periods');
+            $table->unsignedBigInteger('course_id');
+            $table->foreign('course_id')->references('id')->on('courses');
             $table->timestamps();
         });
     }

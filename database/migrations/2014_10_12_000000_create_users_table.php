@@ -18,7 +18,11 @@ return new class extends Migration
             $table->string('profile_image')->nullable();
             $table->string('email')->unique();
             $table->string('phone');
-            $table->boolean('admin');
+            $table->boolean('admin')->default(0);
+            $table->string('completed_tasks')->default(0);
+            $table->string('pending_tasks')->default(0);
+            $table->string('respected_tasks')->default(0);
+            $table->string('unrespected_tasks')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
