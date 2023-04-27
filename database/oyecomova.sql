@@ -10,11 +10,11 @@ VALUES
 
 
 INSERT INTO courses (name, description, isdefault) VALUES
-('Curso 1', 'Descripción del curso 1',1),
+('Curso 1', 'Descripción del curso 1', 1),
 ('Curso 2', 'Descripción del curso 2',0),
-('Curso 3', 'Descripción del curso 3',0,),
+('Curso 3', 'Descripción del curso 3',0),
 ('Curso 4', 'Descripción del curso 4',0),
-('Curso 5', 'Descripción del curso 5'1),
+('Curso 5', 'Descripción del curso 5', 1),
 ('Curso 6', 'Descripción del curso 6',1),
 ('Curso 7', 'Descripción del curso 7',1);
 
@@ -109,6 +109,7 @@ INSERT INTO user_achievement (user_id, achievement_id) VALUES
 
 INSERT INTO course_user (user_id, course_id) VALUES
 (1, 4),
+(1, 6),
 (2, 3),
 (3, 2),
 (4, 1),

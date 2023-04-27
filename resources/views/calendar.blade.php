@@ -2,14 +2,6 @@
 
 @section('calendar')
     <h4 class="text-start">Calendario</h4>
-    @if ($user->courses())
-        {
-
-        @foreach ($user->courses as $course)
-            {{ $course->subjects }}
-        @endforeach
-        }
-    @endif
     <div id='calendar'></div>
     <div class="modal fade" id="createTask" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop" aria-hidden="true">
@@ -33,14 +25,36 @@
                                 <input type="text" class="form-control" id="description" name="description" required>
                             </div>
                             <div class="mb-3">
-                                <label for="subject" class="form-label">Asignatura: </label>
-                                <select class="form-select" name="subject" aria-label="Default select example">
+                                <label for="course" class="form-label">Course: </label>
+                                <select class="form-select" name="course" id="course"
+                                    aria-label="Default select example" onchange="checkCourse()">
+                                    <option selected="true"> - </option>
+                                    @if ($user->courses())
+                                        {
+                                        @foreach ($user->courses as $course)
+                                            @if (!$course->isdefault)
+                                                <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                            @endif
+                                        @endforeach
+                                        }
+                                    @endif
 
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
                                 </select>
+                                {{-- <select class="form-select" name="subject" id="subject"
+                                    aria-label="Default select example" onchange="checkCourse()">
+                                    <option selected="true"> - </option>
+                                    @if ($user->courses())
+                                        {
+                                        @foreach ($user->courses as $course)
+                                            @if (!$course->isdefault)
+                                                @foreach ($course->subjects as $subject)
+                                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                                @endforeach
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                    }
+                                </select> --}}
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -52,12 +66,12 @@
                             <div class="mb-3">
                                 <label for="start_time" class="form-label">Hora de inicio: </label>
                                 <input name="start_time" id="start_time" type="time" class="form-control"
-                                    onchange="comprobarHora()" required min="00:00" max="23:58">
+                                    onchange="checkHour()" required min="00:00" max="23:58">
                             </div>
                             <div class="mb-3">
                                 <label for="end_time" class="form-label">Hora de fin: </label>
                                 <input name="end_time" id="end_time" type="time" class="form-control" required
-                                    onchange="comprobarHora()" min="00:00" max="23:59">
+                                    onchange="checkHour()" min="00:00" max="23:59">
                             </div>
                         </div>
                         <div class="col-12">
@@ -75,7 +89,7 @@
 <script>
     let tasks = @json($tasks); //convierto a json las tareas para que las reciba el archivo app.js
 
-    const comprobarHora = () => {
+    const checkHour = () => {
         let startTime = document.getElementById("start_time").value;
         let endTime = document.getElementById("end_time");
         let divErrors = document.getElementById('errors');
@@ -86,6 +100,6 @@
         hour = hour.toTimeString().slice(0, 5);
 
         endTime.setAttribute("min", hour);
-
     }
+
 </script>

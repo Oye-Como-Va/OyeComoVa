@@ -10,7 +10,7 @@ class Subject extends Model
     use HasFactory;
     public function courses()
     {
-        return $this->belongsTo(Period::class);
+        return $this->belongsTo(Subject::class);
     }
     public function tasks()
     {
