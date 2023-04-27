@@ -16,7 +16,7 @@ class TasksController extends Controller
     {
         $user = User::findOrFail(Auth::id());
         $tasks = array();
-        //genero un array de objetos con las tareas en el formato que requiere fullcalendar: 
+        //genero un array de objetos con las tareas en el formato que requiere fullcalendar:
         foreach ($user->tasks as $task) {
             $tasks[] = [
                 'id' => $task->id,
@@ -25,7 +25,7 @@ class TasksController extends Controller
                 'end' => $task->pivot->date . 'T' . $task->pivot->end_time,
             ];
         }
-                
+
         return view('calendar', @compact("tasks", "user"));
 
     }
@@ -49,7 +49,7 @@ class TasksController extends Controller
 
             $newTask->save();
 
-            //! Falta controlar las asignaturas 
+            //! Falta controlar las asignaturas
 
             //Cambiamos formato fecha para mostrar la alerta
             $date = Carbon::createFromFormat("Y-m-d", $request->date);
