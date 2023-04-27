@@ -26,7 +26,8 @@ INSERT INTO subjects (name, color, description, qualification, course_id) VALUES
 ('Materia 4', 'Amarillo', 'Descripción de la materia 4', 6.0, 2),
 ('Materia 5', 'Naranja', 'Descripción de la materia 5', 8.5, 3),
 ('Materia 6', 'Rosa', 'Descripción de la materia 6', 7.0, 3),
-('Materia 7', 'Morado', 'Descripción de la materia 7', 9.0, 4);
+('Materia 7', 'Morado', 'Descripción de la materia 7', 9.0, 4),
+('Materia 6', 'Morado', 'Descripción de la materia 7', 9.0, 6);
 
 
 INSERT INTO tasks (name, description, subject_id) VALUES

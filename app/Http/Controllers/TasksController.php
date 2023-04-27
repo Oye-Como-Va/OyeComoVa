@@ -25,7 +25,7 @@ class TasksController extends Controller
                 'end' => $task->pivot->date . 'T' . $task->pivot->end_time,
             ];
         }
-                
+       
         return view('calendar', @compact("tasks", "user"));
 
     }

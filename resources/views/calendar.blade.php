@@ -25,36 +25,27 @@
                                 <input type="text" class="form-control" id="description" name="description" required>
                             </div>
                             <div class="mb-3">
-                                <label for="course" class="form-label">Course: </label>
-                                <select class="form-select" name="course" id="course"
-                                    aria-label="Default select example" onchange="checkCourse()">
+                                <label for="course" class="form-label">Curso: </label>
+                                <select class="form-select" name="course" id="course" onchange="checkCourse()"
+                                    aria-label="Default select example">
                                     <option selected="true"> - </option>
                                     @if ($user->courses())
                                         {
                                         @foreach ($user->courses as $course)
-                                            @if (!$course->isdefault)
-                                                <option value="{{ $course->id }}">{{ $course->name }}</option>
-                                            @endif
+                                            {{-- @if (!$course->isdefault) --}}
+                                            <option value="{{ $course->id }}">{{ $course->name }}
+                                            </option>
+                                            {{-- @endif --}}
                                         @endforeach
                                         }
                                     @endif
 
                                 </select>
-                                {{-- <select class="form-select" name="subject" id="subject"
-                                    aria-label="Default select example" onchange="checkCourse()">
+                                <label for="subject" class="form-label">Asignatura: </label>
+                                <select class="form-select" name="subject" id="subject"
+                                    aria-label="Default select example">
                                     <option selected="true"> - </option>
-                                    @if ($user->courses())
-                                        {
-                                        @foreach ($user->courses as $course)
-                                            @if (!$course->isdefault)
-                                                @foreach ($course->subjects as $subject)
-                                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                                                @endforeach
-                                            @endif
-                                        @endforeach
-                                    @endif
-                                    }
-                                </select> --}}
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -102,4 +93,8 @@
         endTime.setAttribute("min", hour);
     }
 
+    const checkCourse = () => {
+       
+
+    }
 </script>
