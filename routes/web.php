@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoursesController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -34,6 +35,8 @@ Route::get('/workingArea', function () {
 Route::get('/register', function () {
     return view('register');
 })->name('registro');
+
+Route::get('courses', [CoursesController::class, 'courses'])->name('courses');
 
 Route::get('/home', function () {
     return view('/main');
