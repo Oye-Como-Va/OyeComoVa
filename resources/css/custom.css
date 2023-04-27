@@ -128,7 +128,7 @@ a {
 .nav_icon {
     font-size: 1.25rem;
 }
-.show {
+.showMenu {
     left: 0;
 }
 .body-pd {
@@ -364,6 +364,15 @@ button:hover {
 .calendarContainer {
     height: 80vh;
 }
+.fc-view-container {
+    width: 100% !important;
+}
+
+.fc .fc-button {
+    font-size: 0.6rem;
+}
+
+
 
 @media screen and (min-width: 768px) {
     .container {
@@ -387,7 +396,7 @@ button:hover {
         left: 0;
         padding: 1rem 1rem 0 0;
     }
-    .show {
+    .showMenu {
         width: calc(var(--nav-width) + 156px);
     }
     .body-pd {
@@ -478,6 +487,12 @@ button:hover {
 
     .timeControl {
         padding: 3.5rem;
+    }
+
+    /*CALENDAR*/
+
+    .fc .fc-button {
+        font-size: 1rem;
     }
 }
 
