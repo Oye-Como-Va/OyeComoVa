@@ -15,7 +15,7 @@
             </div>
             <div class="col-12 col-sm-4 mb-4 cardContainer">
                 <!-- Card 2 -->
-                <a href="{{ route('workingArea') }}">
+                <a href="{{ route('calendar') }}">
                     <section class="card">
                         <div class="icon d-flex flex-column">
                             <img src="{{ URL::asset('img/calendar.png') }}" class="svg" />
