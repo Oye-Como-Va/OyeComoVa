@@ -1,6 +1,7 @@
 @extends('templates.general')
 
 @section('calendar')
+
     <h4 class="text-start">Calendario</h4>
     <div id='calendar'></div>
     <div class="modal fade" id="createTask" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -25,26 +26,24 @@
                                 <input type="text" class="form-control" id="description" name="description" required>
                             </div>
                             <div class="mb-3">
-                                <label for="course" class="form-label">Curso: </label>
-                                <select class="form-select" name="course" id="course" onchange="checkCourse()"
+                                <label for="subject" class="form-label">Asignatura: </label>
+                                <select class="form-select" name="subject" id="subject"
                                     aria-label="Default select example">
-                                    <option selected="true"> - </option>
+                                    <option> - </option>
                                     @if ($user->courses())
                                         {
                                         @foreach ($user->courses as $course)
-                                            {{-- @if (!$course->isdefault) --}}
-                                            <option value="{{ $course->id }}">{{ $course->name }}
-                                            </option>
-                                            {{-- @endif --}}
+                                            @if ($course->isdefault)
+                                                @foreach ($course->subjects as $subject)
+                                                    <option value="{{ $subject->id }}">{{ $subject->name }}
+                                                        ({{ $course->name }})
+                                                    </option>
+                                                @endforeach
+                                            @endif
                                         @endforeach
                                         }
                                     @endif
 
-                                </select>
-                                <label for="subject" class="form-label">Asignatura: </label>
-                                <select class="form-select" name="subject" id="subject"
-                                    aria-label="Default select example">
-                                    <option selected="true"> - </option>
                                 </select>
                             </div>
                         </div>
@@ -93,8 +92,5 @@
         endTime.setAttribute("min", hour);
     }
 
-    const checkCourse = () => {
-       
-
-    }
+    
 </script>
