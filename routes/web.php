@@ -23,21 +23,26 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
-Route::prefix('/calendar')->group(
-    function () {
-        Route::get('/', [TasksController::class, 'show_tasks'])->name('calendar');
-        Route::post('/create', [TasksController::class, 'create_task'])->name('task.create');
-    }
-);
-
-Route::get('/workingArea', function () {
-    return view('workingAreaActive');
-})->name('workingArea');;
-
 Route::get('/register', function () {
     return view('register');
 })->name('registro');
 
-Route::get('/home', function () {
-    return view('/main');
-})->middleware('auth');
+//Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro: 
+Route::prefix('/home')->middleware('auth')->group(
+    function () {
+        Route::get('/', function () {
+            return view('/main');
+        });
+
+        Route::prefix('/calendar')->group(
+            function () {
+                Route::get('/', [TasksController::class, 'show_tasks'])->name('calendar');
+                Route::post('/create', [TasksController::class, 'create_task'])->name('task.create');
+            }
+        );
+
+        Route::get('/workingArea', function () {
+            return view('workingAreaActive');
+        })->name('workingArea');
+    }
+);

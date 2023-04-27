@@ -12,8 +12,8 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class);
     }
-    public function periods()
+    public function subjects()
     {
-        return $this->hasMany(Period::class);
+        return $this->hasMany(Subject::class);
     }
 }

@@ -2,7 +2,6 @@
 
 @section('calendar')
     <h4 class="text-start">Calendario</h4>
-
     <div id='calendar'></div>
     <div class="modal fade" id="createTask" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop" aria-hidden="true">
@@ -26,12 +25,26 @@
                                 <input type="text" class="form-control" id="description" name="description" required>
                             </div>
                             <div class="mb-3">
+                                <label for="course" class="form-label">Curso: </label>
+                                <select class="form-select" name="course" id="course" onchange="checkCourse()"
+                                    aria-label="Default select example">
+                                    <option selected="true"> - </option>
+                                    @if ($user->courses())
+                                        {
+                                        @foreach ($user->courses as $course)
+                                            {{-- @if (!$course->isdefault) --}}
+                                            <option value="{{ $course->id }}">{{ $course->name }}
+                                            </option>
+                                            {{-- @endif --}}
+                                        @endforeach
+                                        }
+                                    @endif
+
+                                </select>
                                 <label for="subject" class="form-label">Asignatura: </label>
-                                <select class="form-select" name="subject" aria-label="Default select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                <select class="form-select" name="subject" id="subject"
+                                    aria-label="Default select example">
+                                    <option selected="true"> - </option>
                                 </select>
                             </div>
                         </div>
@@ -44,12 +57,12 @@
                             <div class="mb-3">
                                 <label for="start_time" class="form-label">Hora de inicio: </label>
                                 <input name="start_time" id="start_time" type="time" class="form-control"
-                                    onchange="comprobarHora()" required>
+                                    onchange="checkHour()" required min="00:00" max="23:58">
                             </div>
                             <div class="mb-3">
                                 <label for="end_time" class="form-label">Hora de fin: </label>
                                 <input name="end_time" id="end_time" type="time" class="form-control" required
-                                    onchange="comprobarHora()">
+                                    onchange="checkHour()" min="00:00" max="23:59">
                             </div>
                         </div>
                         <div class="col-12">
@@ -67,13 +80,21 @@
 <script>
     let tasks = @json($tasks); //convierto a json las tareas para que las reciba el archivo app.js
 
-    const comprobarHora = () => {
+    const checkHour = () => {
         let startTime = document.getElementById("start_time").value;
         let endTime = document.getElementById("end_time");
         let divErrors = document.getElementById('errors');
 
-        //! HAY QUE CONTROLAR QUE SI PONE 23 DE INICIO Y 00 DE FIN SALTA ESTE ERROR :( 
-        endTime.setAttribute("min", startTime);
+        //Sumamos un minuto para establecer que hora de inicio y fin sean al menos de un minuto de dif
+        let hour = new Date("2023-01-01T" + startTime);
+        hour.setMinutes(hour.getMinutes() + 1);
+        hour = hour.toTimeString().slice(0, 5);
+
+        endTime.setAttribute("min", hour);
+    }
+
+    const checkCourse = () => {
+       
 
     }
 </script>

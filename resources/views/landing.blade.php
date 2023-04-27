@@ -9,9 +9,9 @@
                 <h4>Organiza tu tiempo, optimiza tu rendimiento.</h4>
                 <h4> Y que la próxima vez que te pregunten: <i>Oye cómo va</i> puedas contestar ¡pitumba!</h4>
             </div>
-            <button class="login100-form-btn">
+            <a class="login100-form-btn" href={{ route('registro') }}>
                 Únete ahora
-            </button>
+            </a>
         </div>
         <img class="img-fluid" src="{{ URL::asset('img/landing.png') }}">
     </div>
@@ -19,7 +19,7 @@
     <div class="instructions vh-100">
         <div>
             <span>1</span>
-            <img src = >
+            <img src=>
             <p>Planifica tu calendario por horas y tareas</p>
         </div>
         <div>

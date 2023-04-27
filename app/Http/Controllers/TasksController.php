@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon; //para formatear fechas
 
 class TasksController extends Controller
 {
@@ -24,8 +25,9 @@ class TasksController extends Controller
                 'end' => $task->pivot->date . 'T' . $task->pivot->end_time,
             ];
         }
-        // return $tasks;
-        return view('calendar', @compact("tasks"));
+       
+        return view('calendar', @compact("tasks", "user"));
+
     }
     public function create_task(Request $request)
     {
@@ -49,12 +51,17 @@ class TasksController extends Controller
 
             //! Falta controlar las asignaturas 
 
+            //Cambiamos formato fecha para mostrar la alerta
+            $date = Carbon::createFromFormat("Y-m-d", $request->date);
+            $date = $date->format('d/m');
+
             $user->tasks()->attach($newTask->id, ['date' => $request->date, 'start_time' =>  $request->start_time, 'end_time' => $request->end_time]);
             $user->save();
-
+            toastr($date . " " . $request->start_time . " : " . $request->name, "success", "¡Tarea agregada al calendario!");
             return back()->with('message');
         } else {
-            return back()->with($errors);
+            toastr('Ha ocurrido un error al registrar la tarea', "error", 'Ooops');
+            return back();
         }
     }
 }
