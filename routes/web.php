@@ -23,6 +23,10 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 
+Route::get('/register', function () {
+    return view('register');
+})->name('registro');
+
 //Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro:
 Route::prefix('/home')->middleware('auth')->group(
     function () {
@@ -37,13 +41,8 @@ Route::prefix('/home')->middleware('auth')->group(
             }
         );
 
-
-
-        Route::get('/register', function () {
-            return view('register');
-        })->name('registro');
+        Route::get('/workingArea', function () {
+            return view('workingAreaActive');
+        })->name('workingArea');
     }
-
 );
-
-Route::get('/workingArea', [TasksController::class, 'show_tasks'])->name('workingArea');
