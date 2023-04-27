@@ -2,7 +2,14 @@
 
 @section('calendar')
     <h4 class="text-start">Calendario</h4>
+    @if ($user->courses())
+        {
 
+        @foreach ($user->courses as $course)
+            {{ $course->subjects }}
+        @endforeach
+        }
+    @endif
     <div id='calendar'></div>
     <div class="modal fade" id="createTask" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop" aria-hidden="true">
@@ -28,6 +35,7 @@
                             <div class="mb-3">
                                 <label for="subject" class="form-label">Asignatura: </label>
                                 <select class="form-select" name="subject" aria-label="Default select example">
+
                                     <option selected>Open this select menu</option>
                                     <option value="1">One</option>
                                     <option value="2">Two</option>
