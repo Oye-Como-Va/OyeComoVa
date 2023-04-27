@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Subject;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,16 +19,21 @@ class TasksController extends Controller
         $tasks = array();
         //genero un array de objetos con las tareas en el formato que requiere fullcalendar: 
         foreach ($user->tasks as $task) {
+            $color = "aquamarine";
+            if (isset($task->subject_id)) {
+                $subject = Subject::findOrFail($task->subject_id);
+                $color = $subject->color;
+            }
             $tasks[] = [
                 'id' => $task->id,
                 'title' => $task->name,
                 'start' => $task->pivot->date . 'T' . $task->pivot->start_time,
                 'end' => $task->pivot->date . 'T' . $task->pivot->end_time,
+                'color' => $color
             ];
         }
-       
-        return view('calendar', @compact("tasks", "user"));
 
+        return view('calendar', @compact("tasks", "user"));
     }
     public function create_task(Request $request)
     {
@@ -37,7 +43,7 @@ class TasksController extends Controller
             'description' => 'required|string|min:3',
             'date' => 'required|date_format:Y-m-d',
             'start_time' => 'required|date_format:H:i',
-            "end_time" => 'required|date_format:H:i'
+            "end_time" => 'required|date_format:H:i',
         ]);
 
         $errors = $request->has('errors');
@@ -46,10 +52,8 @@ class TasksController extends Controller
             $newTask = new Task;
             $newTask->name = $request->name;
             $newTask->description = $request->description;
-
+            $newTask->subject_id = $request->subject;
             $newTask->save();
-
-            //! Falta controlar las asignaturas 
 
             //Cambiamos formato fecha para mostrar la alerta
             $date = Carbon::createFromFormat("Y-m-d", $request->date);
@@ -58,7 +62,7 @@ class TasksController extends Controller
             $user->tasks()->attach($newTask->id, ['date' => $request->date, 'start_time' =>  $request->start_time, 'end_time' => $request->end_time]);
             $user->save();
             toastr($date . " " . $request->start_time . " : " . $request->name, "success", "¡Tarea agregada al calendario!");
-            return back()->with('message');
+            return back();
         } else {
             toastr('Ha ocurrido un error al registrar la tarea', "error", 'Ooops');
             return back();

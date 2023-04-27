@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             document.getElementById("date").value = info.dateStr;
             createTask.show();
         },
+        colorEvent: 'red',
         events: tasks, //las tareas vienen de calendar.blade, que vienen del controlador de tareas show_tasks
         selectable: true,
         windowResize: function (view) {
