@@ -38,6 +38,7 @@ Route::prefix('/home')->middleware('auth')->group(
             function () {
                 Route::get('/', [TasksController::class, 'show_tasks'])->name('calendar');
                 Route::post('/create', [TasksController::class, 'create_task'])->name('task.create');
+                Route::put('/update/{id}', [TasksController::class, 'drag_drop_task'])->name('task.drag_drop');
             }
         );
 

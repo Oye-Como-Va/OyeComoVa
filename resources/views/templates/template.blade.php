@@ -9,6 +9,7 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
         crossorigin="anonymous">
+    <link href="node_modules/toastr/toastr.css" rel="stylesheet" />
 
 </head>
 
