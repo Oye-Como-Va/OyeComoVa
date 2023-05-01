@@ -39,6 +39,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
     linkColor.forEach((l) => l.addEventListener("click", colorLink));
 
+    //CALENDAR:
+
     const createTask = new bootstrap.Modal(
         document.getElementById("createTask")
     );
@@ -56,20 +58,28 @@ document.addEventListener("DOMContentLoaded", function (event) {
             right: "dayGridMonth timeGridWeek",
         },
         dateClick: function (info) {
-            document.getElementById("date").value = info.dateStr;
-            createTask.show();
+            //con dateClick capturamos el día en el que clica el usuario
+            //controlamos que no pueda ser anterior a hoy
+            let date = info.dateStr;
+            let today = moment(new Date()).format("YYYY-MM-DD");
+            if (date >= today) {
+                //creamos el modal con la fecha introducida:
+                document.getElementById("date").value = date;
+                createTask.show();
+            }
         },
         events: tasks, //las tareas vienen de calendar.blade, que vienen del controlador de tareas show_tasks
         selectable: true,
         editable: true,
         eventDrop: function (info) {
+            //esta función captura cuando un evento es arrastro a otro día. Por tanto, es un update de la fecha
             console.log(info.event.start);
             let id = info.event.id;
-            let date = moment(info.event.start).format("YYYY-MM-DD");
-            let urlDelete = urlUpdate.replace("taskId", id);
+            let date = info.dateStr;
+            let url = urlUpdate.replace("taskId", id); //la url de la ruta la definimos en la view de calendar
 
             $.ajax({
-                url: urlDelete,
+                url: url,
                 type: "PUT",
                 headers: { "X-CSRF-Token": tokenUpdate },
                 dataType: "json",
@@ -81,6 +91,54 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     toastr.error(response.responseJSON.message, "Error");
                 },
             });
+        },
+        eventClick: function (info) {
+            const editTask = new bootstrap.Modal(
+                document.getElementById("editTask")
+            );
+
+            let id = info.event.id;
+            let url = urlEdit.replace("taskId", id);
+            let urlSave = urlSaveChanges.replace("taskId", id);
+            let date = moment(info.event.start).format("YYYY-MM-DD");
+            let startTime = moment(info.event.start).format("HH:mm");
+            
+            // Endtime me está cogiendo la hora actual: 
+            // let endTime = moment(info.end).format("HH:mm"); 
+
+
+
+            $.ajax({
+                url: url,
+                headers: { "X-CSRF-Token": tokenSave },
+                type: "GET",
+                headers: { "X-CSRF-Token": tokenUpdate },
+                dataType: "json",
+                success: function ({ taskEdit, subject }) {
+                    console.log(taskEdit);
+                    document
+                        .getElementById("formEdit")
+                        .setAttribute("action", urlSave);
+                    $("#nameEdit").val(taskEdit.name);
+                    $("#descriptionEdit").val(taskEdit.description);
+                    $("#dateEdit").val(date);
+                    $("#start_timeEdit").val(startTime);
+                    $("#end_timeEdit").val(endTime);
+
+                    if (subject !== null) {
+                        let option = document.createElement("option");
+                        option.value = subject.id;
+                        option.text = subject.name;
+                        option.setAttribute("selected", true);
+                        console.log(option);
+                        $("#subjectEdit").append(option);
+                    }
+                },
+                error: function (response) {
+                    toastr.error(response.responseJSON.message, "Error");
+                },
+            });
+            editTask.show();
         },
         windowResize: function (view) {
             if (view.name === "agendaWeek") {

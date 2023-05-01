@@ -1,7 +1,8 @@
 @extends('templates.general')
 
 @section('calendar')
-    <h4 class="text-start">Calendario</h4>
+    <h4 class="text-start">
+        Calendario</h4>
     <div id='calendar'></div>
     <div class="modal fade" id="createTask" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop" aria-hidden="true">
@@ -72,6 +73,8 @@
             </form>
         </div>
     </div>
+
+
     <div class="modal fade" id="editTask" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog">
@@ -82,13 +85,14 @@
                         aria-label="Close">
                     </button>
                 </div>
-                <form id="formulario" action="" method="PUT" enctype="multipart/form-data">
-                    {{-- @csrf --}}
+                <form id="formEdit" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
                     <div class="modal-body row">
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <label for="name" class="form-label">Tarea:</label>
-                                <input type="text" class="form-control" id="nameEdit" name="name" required>
+                                <label for="nameEdit" class="form-label">Nombre de la tarea:</label>
+                                <input type="text" class="form-control" id="nameEdit" name="nameEdit" required>
                             </div>
                             <div class="mb-3">
                                 <label for="descriptionEdit" class="form-label">Descripción:</label>
@@ -98,22 +102,8 @@
                             <div class="mb-3">
                                 <label for="subjectEdit" class="form-label">Asignatura: </label>
                                 <select class="form-select" name="subjectEdit" id="subjectEdit"
-                                    aria-label="Default select example">
+                                    aria-label="Default select example" disabled>
                                     <option> - </option>
-                                    @if ($user->courses())
-                                        {
-                                        @foreach ($user->courses as $course)
-                                            @if ($course->isdefault)
-                                                @foreach ($course->subjects as $subject)
-                                                    <option value="{{ $subject->id }}">{{ $subject->name }}
-                                                        ({{ $course->name }})
-                                                    </option>
-                                                @endforeach
-                                            @endif
-                                        @endforeach
-                                        }
-                                    @endif
-
                                 </select>
                             </div>
                         </div>
@@ -135,7 +125,7 @@
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end">
-                            <button class="btn btn-info" type="submit">Crear tarea</button>
+                            <button class="btn btn-info" type="submit">Editar tarea</button>
                         </div>
                     </div>
             </div>
@@ -146,12 +136,14 @@
 <script>
     let tasks = @json($tasks); //convierto a json las tareas para que las reciba el archivo app.js
     let urlUpdate = "{{ route('task.drag_drop', ['id' => 'taskId']) }}";
+    let urlEdit = "{{ route('task.edit', ['id' => 'taskId']) }}";
+    let urlSaveChanges = "{{ route('task.saveChanges', ['id' => 'taskId']) }}";
     let tokenUpdate = "{{ csrf_token() }}";
+    let tokenSave = "{{ csrf_token() }}";
 
     const checkHour = () => {
         let startTime = document.getElementById("start_time").value;
         let endTime = document.getElementById("end_time");
-        let divErrors = document.getElementById('errors');
 
         //Sumamos un minuto para establecer que hora de inicio y fin sean al menos de un minuto de dif
         let hour = new Date("2023-01-01T" + startTime);

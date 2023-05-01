@@ -61,8 +61,10 @@ a {
 }
 
 .welcome img {
+    max-width: fit-content;
     filter: drop-shadow(5px 5px 10px #ffffff);
 }
+
 .header_toggle {
     color: var(--first-color-light);
     font-size: 1.5rem;
@@ -144,15 +146,6 @@ a {
     width: 2px;
     height: 32px;
     background-color: var(--white-color);
-}
-.height-100 {
-    height: 100vh;
-}
-
-.index {
-    width: 100%;
-    height: 100vh;
-    justify-content: space-between;
 }
 
 .cardContainer {
@@ -285,7 +278,11 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    padding: 1.5rem 4rem;
+}
+
+.welcome h4 {
+    font-family: var(--brand-font);
 }
 
 .landing h1 {
@@ -295,17 +292,14 @@ button:hover {
     font-size: 1.2rem;
 }
 
-.welcome img {
-    max-width: fit-content;
-}
-
 .instructions {
     background-color: var(--dark-shadow);
     display: flex;
     flex-direction: column;
-    align-items: space-evenly;
+    align-items: center;
     justify-content: center;
     gap: 1rem;
+    padding: 4rem;
 }
 
 .instructions div {
@@ -321,6 +315,12 @@ button:hover {
         #6082a7 100%,
         #6684a5 100%
     );
+    background-color: var(--first-color-dark);
+    filter: drop-shadow(0px 0px 5px var(--first-color-light));
+    box-shadow: #333133 1px 0px 10px 0px;
+    border-radius: 0.5rem;
+    color: white;
+    width: 20rem;
 }
 
 .instructions span {
@@ -330,14 +330,7 @@ button:hover {
 }
 .instructions p {
     text-align: center;
-}
-
-.instructions div {
-    background-color: var(--first-color-dark);
-    filter: drop-shadow(0px 0px 5px var(--first-color-light));
-    box-shadow: #333133 1px 0px 10px 0px;
-    border-radius: 0.5rem;
-    color: white;
+    padding: 1rem; 
 }
 
 .invite {
@@ -371,7 +364,6 @@ button:hover {
 .fc .fc-button {
     font-size: 0.6rem;
 }
-
 
 @media screen and (min-width: 768px) {
     .container {
@@ -443,13 +435,14 @@ button:hover {
         align-items: center;
         justify-content: space-evenly;
         padding: 0 6rem;
+        height: 100vh;
     }
 
     .landing > h1 {
         font-size: 3.5rem;
     }
     .landing h4 {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
     }
 
     .landing button {
@@ -465,6 +458,7 @@ button:hover {
     }
 
     .instructions {
+        height: 100vh;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         align-items: center;

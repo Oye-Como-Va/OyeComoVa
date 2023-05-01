@@ -1,7 +1,7 @@
 @extends('templates.template')
 
 @section('landing')
-    <div class="welcome vh-100">
+    <div class="welcome">
         <div
             class="d-flex justify-content-center align-items-center align-items-lg-start flex-column p-lg-5 gap-lg-3 p-2 gap-4 landing">
             <h1 class="header_title text-white">Oye cómo va</h1>
@@ -16,24 +16,31 @@
         <img class="img-fluid" src="{{ URL::asset('img/landing.png') }}">
     </div>
 
-    <div class="instructions vh-100">
+    <div class="instructions">
         <div>
             <span>1</span>
-            <img src=>
+            <img src="{{ URL::asset('img/planing.png') }}" class="img-fluid">
             <p>Planifica tu calendario por horas y tareas</p>
         </div>
         <div>
             <span>2</span>
+            <img src="{{ URL::asset('img/workingArea.png') }}" class="img-fluid">
             <p>Usa el Working Area para iniciar el tiempo
             </p>
         </div>
         <div>
             <span>3</span>
+            <img src="{{ URL::asset('img/analytics.png') }}" class="img-fluid">
             <p>Comprueba tu rendimiento </p>
         </div>
     </div>
 
-    <div class="invite vh-100">
-
+    <div class="invite">
+        
     </div>
+
+
+    <footer class="p-3">
+        <p class="text-center text-muted p-0 m-0">© 2023 Oye cómo va</p>
+    </footer>
 @endsection
