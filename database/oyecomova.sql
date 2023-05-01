@@ -14,9 +14,9 @@ INSERT INTO courses (name, description, isdefault) VALUES
 ('Curso 2', 'Descripción del curso 2',0),
 ('Curso 3', 'Descripción del curso 3',0),
 ('Curso 4', 'Descripción del curso 4',0),
-('Curso 5', 'Descripción del curso 5', 1),
-('Curso 6', 'Descripción del curso 6',1),
-('Curso 7', 'Descripción del curso 7',1);
+('Curso 5', 'Descripción del curso 5',1),
+('Curso 6', 'Descripción del curso 6',0),
+('Curso 7', 'Descripción del curso 7',0);
 
 
 INSERT INTO subjects (name, color, description, qualification, course_id) VALUES

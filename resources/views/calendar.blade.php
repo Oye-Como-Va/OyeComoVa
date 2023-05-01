@@ -149,15 +149,22 @@
     let tokenUpdate = "{{ csrf_token() }}";
 
     const checkHour = () => {
-        let startTime = document.getElementById("start_time").value;
+        let startinput = document.getElementById('start_time');
+        let startTime = startinput.value;
         let endTime = document.getElementById("end_time");
-        let divErrors = document.getElementById('errors');
+        let date = document.getElementById("date").value;
+        
+        date= new Date(date);
+
+        let actual= new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0);
+        if(actual == true){
+         startinput.setAttribute('min' , new Date().getHours()+':'+ new Date().getMinutes())   
+        }
 
         //Sumamos un minuto para establecer que hora de inicio y fin sean al menos de un minuto de dif
         let hour = new Date("2023-01-01T" + startTime);
         hour.setMinutes(hour.getMinutes() + 1);
         hour = hour.toTimeString().slice(0, 5);
-
         endTime.setAttribute("min", hour);
     }
 </script>
