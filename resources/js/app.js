@@ -1,4 +1,8 @@
 import * as bootstrap from "bootstrap";
+import "./bootstrap";
+import moment from "moment";
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 
 document.addEventListener("DOMContentLoaded", function (event) {
     const showNavbar = (toggleId, navId, bodyId, headerId) => {
@@ -35,8 +39,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
     }
     linkColor.forEach((l) => l.addEventListener("click", colorLink));
 
-    // Your code to run since DOM is loaded and ready
-
     const createTask = new bootstrap.Modal(
         document.getElementById("createTask")
     );
@@ -59,6 +61,27 @@ document.addEventListener("DOMContentLoaded", function (event) {
         },
         events: tasks, //las tareas vienen de calendar.blade, que vienen del controlador de tareas show_tasks
         selectable: true,
+        editable: true,
+        eventDrop: function (info) {
+            console.log(info.event.start);
+            let id = info.event.id;
+            let date = moment(info.event.start).format("YYYY-MM-DD");
+            let urlDelete = urlUpdate.replace("taskId", id);
+
+            $.ajax({
+                url: urlDelete,
+                type: "PUT",
+                headers: { "X-CSRF-Token": tokenUpdate },
+                dataType: "json",
+                data: { date },
+                success: function (response) {
+                    toastr.success(response.message, "¡Listo!");
+                },
+                error: function (response) {
+                    toastr.error(response.responseJSON.message, "Error");
+                },
+            });
+        },
         windowResize: function (view) {
             if (view.name === "agendaWeek") {
                 $("#calendar").fullCalendar(
@@ -70,5 +93,4 @@ document.addEventListener("DOMContentLoaded", function (event) {
         },
     });
     calendar.render();
-   
 });
