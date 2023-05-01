@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
@@ -40,9 +41,11 @@ Route::prefix('/home')->middleware('auth')->group(
                 Route::post('/create', [TasksController::class, 'create_task'])->name('task.create');
             }
         );
-
         Route::get('/workingArea', function () {
             return view('workingAreaActive');
         })->name('workingArea');
+
+        Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
+        Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
     }
 );
