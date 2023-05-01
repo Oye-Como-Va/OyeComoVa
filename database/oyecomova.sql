@@ -10,7 +10,7 @@ VALUES
 
 
 INSERT INTO courses (name, description, isdefault) VALUES
-('Curso 1', 'Descripción del curso 1',1),
+('Curso 1', 'Descripción del curso 1', 1),
 ('Curso 2', 'Descripción del curso 2',0),
 ('Curso 3', 'Descripción del curso 3',0),
 ('Curso 4', 'Descripción del curso 4',0),
@@ -26,7 +26,8 @@ INSERT INTO subjects (name, color, description, qualification, course_id) VALUES
 ('Materia 4', 'Amarillo', 'Descripción de la materia 4', 6.0, 2),
 ('Materia 5', 'Naranja', 'Descripción de la materia 5', 8.5, 3),
 ('Materia 6', 'Rosa', 'Descripción de la materia 6', 7.0, 3),
-('Materia 7', 'Morado', 'Descripción de la materia 7', 9.0, 4);
+('Materia 7', 'Morado', 'Descripción de la materia 7', 9.0, 4),
+('Materia 6', 'Morado', 'Descripción de la materia 7', 9.0, 6);
 
 
 INSERT INTO tasks (name, description, subject_id) VALUES
@@ -109,6 +110,7 @@ INSERT INTO user_achievement (user_id, achievement_id) VALUES
 
 INSERT INTO course_user (user_id, course_id) VALUES
 (1, 4),
+(1, 6),
 (2, 3),
 (3, 2),
 (4, 1),
