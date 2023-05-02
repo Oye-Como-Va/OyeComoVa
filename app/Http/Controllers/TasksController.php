@@ -111,7 +111,7 @@ class TasksController extends Controller
         $user = User::findOrFail(Auth::id());
         $taskEdit = Task::findOrFail($id);
         $request->validate([
-            'nameEdit' => 'required|regex:/^[\pL\s\-]+$/u|min:1|max:255',
+            'nameEdit' => 'required|regex:/^[\pL\d\s-]+$/u|min:1|max:255',
             'descriptionEdit' => 'required|string|min:1',
             'dateEdit' => 'required|date_format:Y-m-d',
             'start_timeEdit' => 'required|date_format:H:i',
@@ -124,10 +124,9 @@ class TasksController extends Controller
             $taskEdit->name = $request->nameEdit;
             $taskEdit->description = $request->descriptionEdit;
 
-            //!mirar cómo hacer lo de las asignaturas y END TIME que coge la hora actual
-            // if (isset($request->subject)) {
-            //     $taskEdit->subject_id = $request->subjectEdit;
-            // }
+            if (isset($request->subject)) {
+                $taskEdit->subject_id = $request->subjectEdit;
+            }
             $taskEdit->save();
 
             $user->tasks()->detach($taskEdit->id);
@@ -142,6 +141,26 @@ class TasksController extends Controller
         } else {
             toastr('Ha ocurrido un error al registrar la tarea', "error", 'Ooops');
             return $errors;
+        }
+    }
+
+    public function delete_task($id)
+    {
+        $user = User::findOrFail(Auth::id());
+        $taskToDelete = Task::findOrFail($id);
+        $name = $taskToDelete->name;
+
+        if (isset($taskToDelete)) {
+            $user->tasks()->detach($id);
+            $working_area = $user->working_areas();
+            $working_area->where('task_id', $id)->delete();
+            if ($taskToDelete->delete()) {
+                return back()->with($name . ' borrada correctamente', 'success', '¡Eliminada!');
+            } else {
+                return back()->with('No se ha podido eliminar la tarea', 'error', 'Ooops');
+            }
+        } else {
+            return back()->with('No se ha encontrado la tarea', 'error', 'Oooops');
         }
     }
 }

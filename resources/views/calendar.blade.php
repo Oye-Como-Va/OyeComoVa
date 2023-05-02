@@ -34,7 +34,7 @@
                                     @if ($user->courses())
                                         {
                                         @foreach ($user->courses as $course)
-                                            @if ($course->isdefault)
+                                            @if (!$course->isdefault)
                                                 @foreach ($course->subjects as $subject)
                                                     <option value="{{ $subject->id }}">{{ $subject->name }}
                                                         ({{ $course->name }})
@@ -57,12 +57,12 @@
                             <div class="mb-3">
                                 <label for="start_time" class="form-label">Hora de inicio: </label>
                                 <input name="start_time" id="start_time" type="time" class="form-control"
-                                    onchange="checkHour()" required min="00:00" max="23:58">
+                                    onchange="checkHour(this)" required min="00:00" max="23:58">
                             </div>
                             <div class="mb-3">
                                 <label for="end_time" class="form-label">Hora de fin: </label>
                                 <input name="end_time" id="end_time" type="time" class="form-control" required
-                                    onchange="checkHour()" min="00:00" max="23:59">
+                                    onchange="checkHour(this)" min="00:00" max="23:59">
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end">
@@ -116,42 +116,60 @@
                             <div class="mb-3">
                                 <label for="start_timeEdit" class="form-label">Hora de inicio: </label>
                                 <input name="start_timeEdit" id="start_timeEdit" type="time" class="form-control"
-                                    onchange="checkHour()" required min="00:00" max="23:58">
+                                    onchange="checkHour(this)" required min="00:00" max="23:58">
                             </div>
                             <div class="mb-3">
                                 <label for="end_timeEdit" class="form-label">Hora de fin: </label>
                                 <input name="end_timeEdit" id="end_timeEdit" type="time" class="form-control"
-                                    required onchange="checkHour()" min="00:00" max="23:59">
+                                    required onchange="checkHour(this)" min="00:00" max="23:59">
                             </div>
                         </div>
-                        <div class="col-12 d-flex justify-content-end">
+                        <div class="col-12 d-flex justify-content-end align-items-center gap-2">
                             <button class="btn btn-info" type="submit">Editar tarea</button>
-                        </div>
-                    </div>
+                </form>
+                <form method="POST" id="formDelete" class="d-flex m-0">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit"><i class='bx bxs-trash-alt'></i></button>
+                </form>
             </div>
-            </form>
         </div>
+    </div>
+    </div>
     </div>
 @endsection
 <script>
+    //Variables que utiliza app.js: 
     let tasks = @json($tasks); //convierto a json las tareas para que las reciba el archivo app.js
     let urlUpdate = "{{ route('task.drag_drop', ['id' => 'taskId']) }}";
     let urlEdit = "{{ route('task.edit', ['id' => 'taskId']) }}";
     let urlSaveChanges = "{{ route('task.saveChanges', ['id' => 'taskId']) }}";
+    let urlDelete = "{{ route('task.delete', ['id' => 'taskId']) }}";
     let tokenUpdate = "{{ csrf_token() }}";
-    let tokenSave = "{{ csrf_token() }}";
 
-    const checkHour = () => {
-        let startinput = document.getElementById('start_time');
-        let startTime = startinput.value;
-        let endTime = document.getElementById("end_time");
-        let date = document.getElementById("date").value;
-        
-        date= new Date(date);
+    const checkHour = (element) => {
+        //Reutilizamos la comprobación para el modal de editar y el de crear
+        let startinput;
+        let startTime;
+        let endTime;
+        let date;
+        if (element.name.includes('Edit')) {
+            startinput = document.getElementById('start_timeEdit');
+            endTime = document.getElementById("end_timeEdit");
+            date = document.getElementById("dateEdit").value;
+        } else {
+            startinput = document.getElementById('start_time');
+            endTime = document.getElementById("end_time");
+            date = document.getElementById("date").value;
+        }
 
-        let actual= new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0);
-        if(actual == true){
-         startinput.setAttribute('min' , new Date().getHours()+':'+ new Date().getMinutes())   
+        startTime = startinput.value;
+        date = new Date(date);
+
+        //Controlamos que si la tarea es para hoy, como mínimo la hora de inicio es la hora actual: 
+        let today = new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0);
+        if (today) {
+            startinput.setAttribute('min', new Date().getHours() + ':' + new Date().getMinutes())
         }
 
         //Sumamos un minuto para establecer que hora de inicio y fin sean al menos de un minuto de dif

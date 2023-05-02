@@ -9,9 +9,14 @@
                 <h4>Organiza tu tiempo, optimiza tu rendimiento.</h4>
                 <h4> Y que la próxima vez que te pregunten: <i>Oye cómo va</i> puedas contestar ¡pitumba!</h4>
             </div>
-            <a class="login100-form-btn" href={{ route('registro') }}>
-                Únete ahora
-            </a>
+            <div class="d-flex gap-3">
+                <a class="login100-form-btn" href={{ route('registro') }}>
+                    Únete ahora
+                </a>
+                <a class="login100-form-btn login" href={{ route('login') }}>
+                    Inicia sesión
+                </a>
+            </div>
         </div>
         <img class="img-fluid" src="{{ URL::asset('img/landing.png') }}">
     </div>
@@ -36,7 +41,7 @@
     </div>
 
     <div class="invite">
-        
+
     </div>
 
 

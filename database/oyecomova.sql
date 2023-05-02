@@ -1,14 +1,3 @@
-INSERT INTO users (name, surname, profile_image, email, phone, `admin`, completed_tasks, pending_tasks, respected_tasks, unrespected_tasks, email_verified_at, `password`) 
-VALUES 
-('Juan', 'Pérez', NULL, 'juan@example.com', '555-1234', 0, '15', '5', '10', '3', NULL, 'hashed_password'),
-('María', 'Rodríguez', NULL, 'maria@example.com', '555-5678', 0, '20', '8', '15', '6', NULL, 'hashed_password'),
-('Pedro', 'González', NULL, 'pedro@example.com', '555-9876', 1, '30', '3', '25', '1', NULL, 'hashed_password'),
-('Laura', 'Fernández', NULL, 'laura@example.com', '555-6543', 0, '10', '2', '8', '0', NULL, 'hashed_password'),
-('Carlos', 'Martínez', NULL, 'carlos@example.com', '555-7890', 0, '5', '0', '3', '1', NULL, 'hashed_password'),
-('Ana', 'López', NULL, 'ana@example.com', '555-4321', 1, '50', '10', '45', '2', NULL, 'hashed_password'),
-('Jorge', 'Ramírez', NULL, 'jorge@example.com', '555-5678', 0, '25', '5', '20', '1', NULL, 'hashed_password');
-
-
 INSERT INTO courses (name, description, isdefault) VALUES
 ('Curso 1', 'Descripción del curso 1', 1),
 ('Curso 2', 'Descripción del curso 2',0),
@@ -20,14 +9,14 @@ INSERT INTO courses (name, description, isdefault) VALUES
 
 
 INSERT INTO subjects (name, color, description, qualification, course_id) VALUES
-('Materia 1', 'Rojo', 'Descripción de la materia 1', 9.5, 1),
-('Materia 2', 'Azul', 'Descripción de la materia 2', 8.0, 1),
-('Materia 3', 'Verde', 'Descripción de la materia 3', 7.5, 2),
-('Materia 4', 'Amarillo', 'Descripción de la materia 4', 6.0, 2),
-('Materia 5', 'Naranja', 'Descripción de la materia 5', 8.5, 3),
-('Materia 6', 'Rosa', 'Descripción de la materia 6', 7.0, 3),
-('Materia 7', 'Morado', 'Descripción de la materia 7', 9.0, 4),
-('Materia 6', 'Morado', 'Descripción de la materia 7', 9.0, 6);
+('Materia 1', 'red', 'Descripción de la materia 1', 9.5, 1),
+('Materia 2', 'blue', 'Descripción de la materia 2', 8.0, 1),
+('Materia 3', 'green', 'Descripción de la materia 3', 7.5, 2),
+('Materia 4', 'yellow', 'Descripción de la materia 4', 6.0, 2),
+('Materia 5', 'orange', 'Descripción de la materia 5', 8.5, 3),
+('Materia 6', 'pink', 'Descripción de la materia 6', 7.0, 3),
+('Materia 7', 'purple', 'Descripción de la materia 7', 9.0, 4),
+('Materia 6', 'purple', 'Descripción de la materia 7', 9.0, 6);
 
 
 INSERT INTO tasks (name, description, subject_id) VALUES
@@ -78,16 +67,6 @@ INSERT INTO notes (note, color, date, time, working_area_id) VALUES
 ('Nota 5', 'naranja', '2023-04-29', '11:30:00', 1),
 ('Nota 6', 'rojo', '2023-04-30', '09:00:00', 3),
 ('Nota 7', 'morado', '2023-04-30', '15:20:00', 2);
-
-INSERT INTO `analytics` (`date`, `date_real`, `start_time`, `start_time_real`, `end_time`, `end_time_real`, `working_area_id`)
-VALUES
-    ('2022-01-01', '2022-01-01', '08:00:00', '08:02:34', '12:00:00', '11:59:45', 1),
-    ('2022-01-01', '2022-01-01', '08:00:00', '08:05:21', '12:00:00', '11:58:59', 1),
-    ('2022-01-02', '2022-01-02', '07:30:00', '07:35:12', '11:30:00', '11:25:46', 2),
-    ('2022-01-02', '2022-01-02', '07:30:00', '07:28:59', '11:30:00', '11:29:12', 2),
-    ('2022-01-03', '2022-01-03', '09:00:00', '09:01:33', '13:00:00', '13:01:56', 3),
-    ('2022-01-03', '2022-01-03', '09:00:00', '08:58:43', '13:00:00', '13:02:00', 3),
-    ('2022-01-04', '2022-01-04', '10:00:00', '09:58:22', '14:00:00', '13:58:33', 4);
 
 INSERT INTO achievements (name, date, image, description, analytic_id) VALUES 
 ('Achievement 1', '2022-01-01', 'image1.jpg', 'Description for achievement 1', 1),

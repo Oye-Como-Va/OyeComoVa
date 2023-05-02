@@ -47,9 +47,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     let calendarEl = document.getElementById("calendar");
     let calendar = new FullCalendar.Calendar(calendarEl, {
+        locale: "es",
         initialView: "dayGridMonth",
         height: "auto",
-        locale: "es",
         firstDay: 1, //para que el día de la semana empiece en lunes
         headerToolbar: {
             //definimos la cabecera del calendario
@@ -57,6 +57,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
             center: "title",
             right: "dayGridMonth timeGridWeek",
         },
+        events: tasks, //las tareas vienen de calendar.blade, que vienen del controlador de tareas show_tasks
+        selectable: true,
+        editable: true,
         dateClick: function (info) {
             //con dateClick capturamos el día en el que clica el usuario
             //controlamos que no pueda ser anterior a hoy
@@ -68,14 +71,10 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 createTask.show();
             }
         },
-        events: tasks, //las tareas vienen de calendar.blade, que vienen del controlador de tareas show_tasks
-        selectable: true,
-        editable: true,
         eventDrop: function (info) {
             //esta función captura cuando un evento es arrastro a otro día. Por tanto, es un update de la fecha
-            console.log(info.event.start);
             let id = info.event.id;
-            let date = info.dateStr;
+            let date = moment(info.event.start).format("YYYY-MM-DD");
             let url = urlUpdate.replace("taskId", id); //la url de la ruta la definimos en la view de calendar
 
             $.ajax({
@@ -93,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
             });
         },
         eventClick: function (info) {
+            //eventClick captura cuando se clica en un evento
             const editTask = new bootstrap.Modal(
                 document.getElementById("editTask")
             );
@@ -100,17 +100,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
             let id = info.event.id;
             let url = urlEdit.replace("taskId", id);
             let urlSave = urlSaveChanges.replace("taskId", id);
+            let urlToDelete = urlDelete.replace("taskId", id);
             let date = moment(info.event.start).format("YYYY-MM-DD");
             let startTime = moment(info.event.start).format("HH:mm");
-            
-            // Endtime me está cogiendo la hora actual: 
-            // let endTime = moment(info.end).format("HH:mm"); 
-
-
+            let endTime = moment(info.event.end).format("HH:mm");
 
             $.ajax({
                 url: url,
-                headers: { "X-CSRF-Token": tokenSave },
                 type: "GET",
                 headers: { "X-CSRF-Token": tokenUpdate },
                 dataType: "json",
@@ -124,7 +120,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     $("#dateEdit").val(date);
                     $("#start_timeEdit").val(startTime);
                     $("#end_timeEdit").val(endTime);
-
+                    document
+                        .getElementById("formDelete")
+                        .setAttribute("action", urlToDelete);
                     if (subject !== null) {
                         let option = document.createElement("option");
                         option.value = subject.id;
