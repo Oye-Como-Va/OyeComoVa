@@ -18,7 +18,7 @@ class TasksController extends Controller
     {
         $user = User::findOrFail(Auth::id());
         $tasks = array();
-        //genero un array de objetos con las tareas en el formato que requiere fullcalendar: 
+        //genero un array de objetos con las tareas en el formato que requiere fullcalendar:
         foreach ($user->tasks as $task) {
             $color = "aquamarine";
             if (isset($task->subject_id)) {
@@ -81,7 +81,7 @@ class TasksController extends Controller
             $task = Task::findOrFail($id); //guardamos la tarea para poder devolver el name
 
             $user->tasks()->updateExistingPivot($id, ['date' => $request->date]);
-            //formateamos fecha para mostrar alerta: 
+            //formateamos fecha para mostrar alerta:
             $date = Carbon::createFromFormat("Y-m-d", $request->date);
             $date = $date->format('d/m');
             return response()->json(['message' => $task->name . ' ha sido cambiada al ' . $date]);

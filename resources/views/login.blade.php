@@ -2,7 +2,7 @@
 @section('register')
     <div class="limiter">
 
-        <div class="container-login100" style="background-image: url({{ URL::asset('fondo.jpg') }});">
+        <div class="container-login100" style="background-image: url({{ URL::asset('fondo.webp') }});">
             <div class="wrap-login100">
                 <span class="login100-form-logo">
                     <h1 class="brandH1">Oye como va</h1>
@@ -33,11 +33,12 @@
                             </span>
                         @enderror
                     </div>
-                    <div class="wrap-input100 validate-input" data-validate="Enter email">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                    <div class="wrap-input100 validate-input d-flex justify-content-start gap-2" data-validate="Enter email">
                         <label class="form-check-label" for="remember">
                             {{ __('Remember Me') }}
                         </label>
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
                     </div>
                     <div class="container-login100-form-btn">
                         <button type="submit" class="login100-form-btn">
@@ -45,9 +46,6 @@
                         </button>
 
                     </div>
-                    @if ($errors->any())
-                        <h4>{{ $errors->first() }}</h4>
-                    @endif
                 </form>
             </div>
         </div>

@@ -33,7 +33,7 @@
                                     @if ($user->courses())
                                         {
                                         @foreach ($user->courses as $course)
-                                            @if ($course->isdefault)
+                                            @if (!$course->isdefault)
                                                 @foreach ($course->subjects as $subject)
                                                     <option value="{{ $subject->id }}">{{ $subject->name }}
                                                         ({{ $course->name }})
@@ -153,12 +153,12 @@
         let startTime = startinput.value;
         let endTime = document.getElementById("end_time");
         let date = document.getElementById("date").value;
-        
+
         date= new Date(date);
 
         let actual= new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0);
         if(actual == true){
-         startinput.setAttribute('min' , new Date().getHours()+':'+ new Date().getMinutes())   
+         startinput.setAttribute('min' , new Date().getHours()+':'+ new Date().getMinutes())
         }
 
         //Sumamos un minuto para establecer que hora de inicio y fin sean al menos de un minuto de dif
