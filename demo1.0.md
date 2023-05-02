@@ -23,6 +23,11 @@ Para crear la base de datos e insertar un seeder para la demo, ejecute los sigui
 `php artisan migrate`
 `php artisan db:seed`
 
+Para iniciar la aplicación: 
+`npm run dev`
+`php artisan serve`
+
+
 El seeder creará una serie de usuarios con contraseñas predeterminadas. Puede hacer uso de cualquiera de ellos mirando la contraseña en el archivo DatabaseSeeder.php, crear su propio usuario o probar con el siguiente:
 email: `juan@example.com`
 password: `password123`
