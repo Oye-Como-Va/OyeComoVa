@@ -1,7 +1,8 @@
 @extends('templates.general')
 
 @section('calendar')
-    <h4 class="text-start">Calendario</h4>
+    <h4 class="text-start">
+        Calendario</h4>
     <div id='calendar'></div>
     <div class="modal fade" id="createTask" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop" aria-hidden="true">
@@ -56,12 +57,12 @@
                             <div class="mb-3">
                                 <label for="start_time" class="form-label">Hora de inicio: </label>
                                 <input name="start_time" id="start_time" type="time" class="form-control"
-                                    onchange="checkHour()" required min="00:00" max="23:58">
+                                    onchange="checkHour(this)" required min="00:00" max="23:58">
                             </div>
                             <div class="mb-3">
                                 <label for="end_time" class="form-label">Hora de fin: </label>
                                 <input name="end_time" id="end_time" type="time" class="form-control" required
-                                    onchange="checkHour()" min="00:00" max="23:59">
+                                    onchange="checkHour(this)" min="00:00" max="23:59">
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end">
@@ -72,6 +73,8 @@
             </form>
         </div>
     </div>
+
+
     <div class="modal fade" id="editTask" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog">
@@ -82,13 +85,14 @@
                         aria-label="Close">
                     </button>
                 </div>
-                <form id="formulario" action="" method="PUT" enctype="multipart/form-data">
-                    {{-- @csrf --}}
+                <form id="formEdit" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
+                    @csrf
                     <div class="modal-body row">
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <label for="name" class="form-label">Tarea:</label>
-                                <input type="text" class="form-control" id="nameEdit" name="name" required>
+                                <label for="nameEdit" class="form-label">Nombre de la tarea:</label>
+                                <input type="text" class="form-control" id="nameEdit" name="nameEdit" required>
                             </div>
                             <div class="mb-3">
                                 <label for="descriptionEdit" class="form-label">Descripción:</label>
@@ -98,22 +102,8 @@
                             <div class="mb-3">
                                 <label for="subjectEdit" class="form-label">Asignatura: </label>
                                 <select class="form-select" name="subjectEdit" id="subjectEdit"
-                                    aria-label="Default select example">
+                                    aria-label="Default select example" disabled>
                                     <option> - </option>
-                                    @if ($user->courses())
-                                        {
-                                        @foreach ($user->courses as $course)
-                                            @if ($course->isdefault)
-                                                @foreach ($course->subjects as $subject)
-                                                    <option value="{{ $subject->id }}">{{ $subject->name }}
-                                                        ({{ $course->name }})
-                                                    </option>
-                                                @endforeach
-                                            @endif
-                                        @endforeach
-                                        }
-                                    @endif
-
                                 </select>
                             </div>
                         </div>
@@ -126,39 +116,60 @@
                             <div class="mb-3">
                                 <label for="start_timeEdit" class="form-label">Hora de inicio: </label>
                                 <input name="start_timeEdit" id="start_timeEdit" type="time" class="form-control"
-                                    onchange="checkHour()" required min="00:00" max="23:58">
+                                    onchange="checkHour(this)" required min="00:00" max="23:58">
                             </div>
                             <div class="mb-3">
                                 <label for="end_timeEdit" class="form-label">Hora de fin: </label>
                                 <input name="end_timeEdit" id="end_timeEdit" type="time" class="form-control"
-                                    required onchange="checkHour()" min="00:00" max="23:59">
+                                    required onchange="checkHour(this)" min="00:00" max="23:59">
                             </div>
                         </div>
-                        <div class="col-12 d-flex justify-content-end">
-                            <button class="btn btn-info" type="submit">Crear tarea</button>
-                        </div>
-                    </div>
+                        <div class="col-12 d-flex justify-content-end align-items-center gap-2">
+                            <button class="btn btn-info" type="submit">Editar tarea</button>
+                </form>
+                <form method="POST" id="formDelete" class="d-flex m-0">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit"><i class='bx bxs-trash-alt'></i></button>
+                </form>
             </div>
-            </form>
         </div>
+    </div>
+    </div>
     </div>
 @endsection
 <script>
+    //Variables que utiliza app.js: 
     let tasks = @json($tasks); //convierto a json las tareas para que las reciba el archivo app.js
     let urlUpdate = "{{ route('task.drag_drop', ['id' => 'taskId']) }}";
+    let urlEdit = "{{ route('task.edit', ['id' => 'taskId']) }}";
+    let urlSaveChanges = "{{ route('task.saveChanges', ['id' => 'taskId']) }}";
+    let urlDelete = "{{ route('task.delete', ['id' => 'taskId']) }}";
     let tokenUpdate = "{{ csrf_token() }}";
 
-    const checkHour = () => {
-        let startinput = document.getElementById('start_time');
-        let startTime = startinput.value;
-        let endTime = document.getElementById("end_time");
-        let date = document.getElementById("date").value;
+    const checkHour = (element) => {
+        //Reutilizamos la comprobación para el modal de editar y el de crear
+        let startinput;
+        let startTime;
+        let endTime;
+        let date;
+        if (element.name.includes('Edit')) {
+            startinput = document.getElementById('start_timeEdit');
+            endTime = document.getElementById("end_timeEdit");
+            date = document.getElementById("dateEdit").value;
+        } else {
+            startinput = document.getElementById('start_time');
+            endTime = document.getElementById("end_time");
+            date = document.getElementById("date").value;
+        }
 
-        date= new Date(date);
+        startTime = startinput.value;
+        date = new Date(date);
 
-        let actual= new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0);
-        if(actual == true){
-         startinput.setAttribute('min' , new Date().getHours()+':'+ new Date().getMinutes())
+        //Controlamos que si la tarea es para hoy, como mínimo la hora de inicio es la hora actual: 
+        let today = new Date(date).setHours(0, 0, 0, 0) === new Date().setHours(0, 0, 0, 0);
+        if (today) {
+            startinput.setAttribute('min', new Date().getHours() + ':' + new Date().getMinutes())
         }
 
         //Sumamos un minuto para establecer que hora de inicio y fin sean al menos de un minuto de dif

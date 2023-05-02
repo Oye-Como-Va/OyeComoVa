@@ -33,13 +33,16 @@ Route::prefix('/home')->middleware('auth')->group(
     function () {
         Route::get('/', function () {
             return view('/main');
-        });
+        })->name('home');
 
         Route::prefix('/calendar')->group(
             function () {
                 Route::get('/', [TasksController::class, 'show_tasks'])->name('calendar');
                 Route::post('/create', [TasksController::class, 'create_task'])->name('task.create');
-                Route::put('/update/{id}', [TasksController::class, 'drag_drop_task'])->name('task.drag_drop');
+                Route::get('/edit/{id}', [TasksController::class, 'edit_task'])->name('task.edit');
+                Route::delete('/delete/{id}', [TasksController::class, 'delete_task'])->name('task.delete');
+                Route::put('/drag_drop/{id}', [TasksController::class, 'drag_drop_task'])->name('task.drag_drop');
+                Route::put('/saveChanges/{id}', [TasksController::class, 'saveChanges'])->name('task.saveChanges');
             }
         );
         Route::get('/workingArea', function () {
@@ -52,6 +55,5 @@ Route::prefix('/home')->middleware('auth')->group(
         Route::post('/courses/create', [CoursesController::class, 'create_subject'])->name('create_subject');
 
         Route::get('/courses/{id}/subjects', [CoursesController::class, 'subjects'])->name('subjects');
-
     }
 );
