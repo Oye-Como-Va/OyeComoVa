@@ -4,7 +4,7 @@
         <h1>Cursos disponibles: {{ count($courses) }}</h1>
         <div class="row">
             @foreach ($courses as $curso)
-                <div class="carta @if ($curso->isdefault == 1) isdefault @endif ">
+                <div class="carta @if ($curso->isdefault == 1) isdefault @endif col-md-4 col-sm-12">
                     <div class="imgBx">
                         <div class="icon d-flex flex-column justify-content-center xd">
                             @if ($curso->isdefault == 1)
@@ -19,25 +19,8 @@
                             <div class="card-body text-center">
                                 <p>{{ $curso->name }}</p>
                                 <p>{{ $curso->description }}</p>
-
-
-                                <p><strong>Asignaturas:</strong></p>
-                                @if (count($curso->subjects) > 0)
-                                @foreach ($curso->subjects as $subject)
-                                <p>{{ $subject->name }}</p>
-                                @endforeach
+                                <a href="{{ route('subjects', $curso->id) }}" class="btn @if ($curso->isdefault == 1) bg-custom @else bg-custom-dark @endif">Ver asignaturas</a>
                             </div>
-                                <p>¿Desea añadir <a class="modallink" href="#modallink{{ $curso->id }}"
-                                        data-bs-toggle="modal" data-bs-target="#modallink{{ $curso->id }}">
-                                        una nueva asignatura?
-                                    </a></p>
-                            @else
-                                <p>Este curso no tiene asignaturas. <a class="modallink"
-                                        href="#modallink{{ $curso->id }}" data-bs-toggle="modal"
-                                        data-bs-target="#modallink{{ $curso->id }}">
-                                        ¿Desea crearla?
-                                    </a></p>
-                            @endif
                         </div>
                     </div>
                 </div>

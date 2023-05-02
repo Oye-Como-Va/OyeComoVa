@@ -17,6 +17,13 @@ class CoursesController extends Controller
         $courses = $user->courses;
         return view('courses', @compact('courses'));
     }
+    public function subjects($id)
+{
+    $course = Course::findOrFail($id);
+    $subjects = $course->subjects;
+
+    return view('subjects', compact('course', 'subjects'));
+}
     public function create_course(Request $request)
     {
         try {

@@ -9,11 +9,9 @@
                 </span>
                 <form method="POST" action="{{ route('registro') }}">
                     @csrf
-
                     <span class="login100-form-title p-b-34 p-t-27">
                         Registrate
                     </span>
-
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
                         <label for="name">Nombre</label>
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
