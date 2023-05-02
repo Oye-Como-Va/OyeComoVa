@@ -48,5 +48,7 @@ Route::prefix('/home')->middleware('auth')->group(
 
         Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
         Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
+
+        Route::post('/courses/create', [CoursesController::class, 'create_subject'])->name('create_subject');
     }
 );
