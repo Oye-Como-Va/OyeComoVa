@@ -2,7 +2,7 @@
 @section('register')
     <div class="limiter">
 
-        <div class="container-login100" style="background-image: url({{ URL::asset('fondo.jpg') }});">
+        <div class="container-login100" style="background-image: url({{ URL::asset('fondo.webp') }});">
             <div class="wrap-login100">
                 <span class="login100-form-logo">
                     <h1 class="brandH1">Oye como va</h1>
