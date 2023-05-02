@@ -16,13 +16,13 @@
         </header>
         <div class="l-navbar" id="nav-bar">
             <nav class="nav">
-                <div> <a href="#" class="nav_logo"> <i class='bx bx-timer nav_logo-icon'></i> <span
+                <div> <a href="{{ route('home') }}" class="nav_logo"> <i class='bx bx-home nav_logo-icon'></i> <span
                             class="nav_logo-name">{{ Auth::User()->name }}</span> </a>
                     <div class="nav_list"> <a href="{{ route('workingArea') }}" class="nav_link active"> <i
                                 class='bx bx-briefcase nav_icon'></i> <span class="nav_name">Working Area</span> </a> <a
                             href="{{ route('calendar') }}"class="nav_link"> <i
                                 class='bx bx-calendar-exclamation nav_icon'></i> <span class="nav_name">Calendario</span>
-                        </a> <a href="#" class="nav_link"><i class='bx bx-folder nav_icon'></i> <span
+                        </a> <a href="{{ route('courses') }}" class="nav_link"><i class='bx bx-folder nav_icon'></i> <span
                                 class="nav_name">Cursos</span>
                         </a> <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span
                                 class="nav_name">Estadísticas</span> </a> <a href="#" class="nav_link"> <i

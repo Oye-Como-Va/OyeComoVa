@@ -33,7 +33,7 @@ Route::prefix('/home')->middleware('auth')->group(
     function () {
         Route::get('/', function () {
             return view('/main');
-        });
+        })->name('home');
 
         Route::prefix('/calendar')->group(
             function () {
@@ -55,6 +55,5 @@ Route::prefix('/home')->middleware('auth')->group(
         Route::post('/courses/create', [CoursesController::class, 'create_subject'])->name('create_subject');
 
         Route::get('/courses/{id}/subjects', [CoursesController::class, 'subjects'])->name('subjects');
-
     }
 );
