@@ -89,4 +89,13 @@ class TasksController extends Controller
             return response()->json(['message' => "No se ha encontrado esa tarea"], 404);
         }
     }
+
+    public function comprobar_task(Request $request){
+        $user = User::findOrFail(Auth::id());
+        $tasks = $user->tasks();
+        if(empty($tasks)){
+            return "No tenemos ninguna tarea";
+        }
+
+    }
 }

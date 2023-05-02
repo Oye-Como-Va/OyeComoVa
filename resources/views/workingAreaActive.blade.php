@@ -17,5 +17,6 @@
                 <p class="p-0 m-0">FIN</p><span class="p-0 m-0 text-success">11:30</span>
             </div>
         </div>
+        
     </div>
 @endsection
