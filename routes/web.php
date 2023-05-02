@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TasksController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,7 +28,7 @@ Route::get('/register', function () {
     return view('register');
 })->name('registro');
 
-//Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro: 
+//Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro:
 Route::prefix('/home')->middleware('auth')->group(
     function () {
         Route::get('/', function () {
@@ -44,9 +45,16 @@ Route::prefix('/home')->middleware('auth')->group(
                 Route::put('/saveChanges/{id}', [TasksController::class, 'saveChanges'])->name('task.saveChanges');
             }
         );
-
         Route::get('/workingArea', function () {
             return view('workingAreaActive');
         })->name('workingArea');
+
+        Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
+        Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
+
+        Route::post('/courses/create', [CoursesController::class, 'create_subject'])->name('create_subject');
+
+        Route::get('/courses/{id}/subjects', [CoursesController::class, 'subjects'])->name('subjects');
+
     }
 );

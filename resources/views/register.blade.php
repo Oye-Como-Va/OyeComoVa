@@ -2,18 +2,16 @@
 @section('register')
     <div class="limiter">
 
-        <div class="container-login100" style="background-image: url({{ URL::asset('fondo.jpg') }});">
+        <div class="container-login100" style="background-image: url({{ URL::asset('fondo.webp') }});">
             <div class="wrap-login100">
                 <span class="login100-form-logo">
                     <h1 class="brandH1">Oye cómo va</h1>
                 </span>
                 <form method="POST" action="{{ route('registro') }}">
                     @csrf
-
                     <span class="login100-form-title p-b-34 p-t-27">
                         Regístrate
                     </span>
-
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
                         <label for="name">Nombre</label>
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
