@@ -19,4 +19,12 @@
         </div>
         
     </div>
-@endsection
+    <div class="card-body text-center">
+        @foreach($tasks as $task)
+        @if(empty($task))
+            <p>No tenemos ninguna tarea creada</p>
+        @endif
+        @endforeach
+    </div>
+    @endsection
+    

@@ -164,4 +164,11 @@ class TasksController extends Controller
         }
 
     }
+
+    public function comprobar_task(Request $request){
+
+        $user = User::findOrFail(Auth::id());
+        $tasks = $user->tasks();
+        return view('workingAreaActive', @compact('tasks'));
+    }
 }
