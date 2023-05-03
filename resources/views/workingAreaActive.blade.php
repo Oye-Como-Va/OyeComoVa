@@ -23,7 +23,15 @@
         @foreach($tasks as $task)
         @if(empty($task))
             <p>No tenemos ninguna tarea creada</p>
+
+        
+            
+        @else
+        <p>{{ $task->name }}</p>
+        <p>{{ $task->description }}</p> 
         @endif
+        
+        
         @endforeach
     </div>
     @endsection
