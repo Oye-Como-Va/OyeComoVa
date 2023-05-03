@@ -26,7 +26,7 @@
             </div>
             <div class="col-12 col-sm-4 mb-4 cardContainer">
                 <!-- Card 3 -->
-                <a href="{{ route('workingArea') }}">
+                <a href="{{ route('courses') }}">
                     <section class="card">
                         <div class="icon d-flex flex-column">
                             <img src="{{ URL::asset('img/folder.png') }}" class="svg" />

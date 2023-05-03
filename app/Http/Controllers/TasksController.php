@@ -30,7 +30,8 @@ class TasksController extends Controller
                 'title' => $task->name,
                 'start' => $task->pivot->date . 'T' . $task->pivot->start_time,
                 'end' => $task->pivot->date . 'T' . $task->pivot->end_time,
-                'color' => $color
+                'color' => $color,
+                'description' => $task->description
             ];
         }
 
@@ -40,8 +41,8 @@ class TasksController extends Controller
     {
         $user = User::findOrFail(Auth::id());
         $request->validate([
-            'name' => 'required|regex:/^[\pL\s\-]+$/u|min:3|max:255',
-            'description' => 'required|string|min:3',
+            'name' => 'required|regex:/^[\pL\s\-]+$/u|min:1|max:255',
+            'description' => 'required|string|min:1',
             'date' => 'required|date_format:Y-m-d',
             'start_time' => 'required|date_format:H:i',
             "end_time" => 'required|date_format:H:i',
@@ -90,11 +91,76 @@ class TasksController extends Controller
         }
     }
 
-    public function comprobar_task(Request $request){
+    public function edit_task($id)
+    {
+        $taskEdit = Task::findOrFail($id);
+        if ($taskEdit->subject_id) {
+            $subject = Subject::findOrFail($taskEdit->subject_id);
+            $response = array(
+                "taskEdit" => $taskEdit,
+                "subject" => $subject
+            );
+            return response()->json($response);
+        }
+
+        return response()->json(["taskEdit" => $taskEdit, "subject" => null]);
+    }
+    public function saveChanges(Request $request, $id)
+    {
+
         $user = User::findOrFail(Auth::id());
-        $tasks = $user->tasks();
-        if(empty($tasks)){
-            return "No tenemos ninguna tarea";
+        $taskEdit = Task::findOrFail($id);
+        $request->validate([
+            'nameEdit' => 'required|regex:/^[\pL\d\s-]+$/u|min:1|max:255',
+            'descriptionEdit' => 'required|string|min:1',
+            'dateEdit' => 'required|date_format:Y-m-d',
+            'start_timeEdit' => 'required|date_format:H:i',
+            "end_timeEdit" => 'required|date_format:H:i',
+        ]);
+
+        $errors = $request->has('errors');
+        if (!$errors) {
+            $taskEdit->id = $id;
+            $taskEdit->name = $request->nameEdit;
+            $taskEdit->description = $request->descriptionEdit;
+
+            if (isset($request->subject)) {
+                $taskEdit->subject_id = $request->subjectEdit;
+            }
+            $taskEdit->save();
+
+            $user->tasks()->detach($taskEdit->id);
+            $user->tasks()->attach($id, ['date' => $request->dateEdit, 'start_time' =>  $request->start_timeEdit, 'end_time' => $request->end_timeEdit]);
+            $user->save();
+
+            //Cambiamos formato fecha para mostrar la alerta
+            $date = Carbon::createFromFormat("Y-m-d", $request->dateEdit);
+            $date = $date->format('d/m');
+            toastr($date . " " . $request->start_timeEdit . " : " . $request->nameEdit, "success", "¡Tarea modificada!");
+            return back();
+        } else {
+            toastr('Ha ocurrido un error al registrar la tarea', "error", 'Ooops');
+            return $errors;
+        }
+    }
+
+    public function delete_task($id)
+    {
+        $user = User::findOrFail(Auth::id());
+        $taskToDelete = Task::findOrFail($id);
+        $name = $taskToDelete->name;
+
+        if (isset($taskToDelete)) {
+            $user->tasks()->detach($id);
+            $working_area = $user->working_areas();
+            $working_area->where('task_id', $id)->delete();
+            if ($taskToDelete->delete()) {
+                return back()->with($name . ' borrada correctamente', 'success', '¡Eliminada!');
+            } else {
+                return back()->with('No se ha podido eliminar la tarea', 'error', 'Ooops');
+            }
+        } else {
+            return back()->with('No se ha encontrado la tarea', 'error', 'Oooops');
         }
 
     }

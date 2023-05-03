@@ -5,15 +5,13 @@
         <div class="container-login100" style="background-image: url({{ URL::asset('fondo.webp') }});">
             <div class="wrap-login100">
                 <span class="login100-form-logo">
-                    <h1 class="brandH1">Oye como va</h1>
+                    <h1 class="brandH1">Oye cómo va</h1>
                 </span>
                 <form method="POST" action="{{ route('registro') }}">
                     @csrf
-
                     <span class="login100-form-title p-b-34 p-t-27">
-                        Registrate
+                        Regístrate
                     </span>
-
                     <div class="wrap-input100 validate-input" data-validate="Enter username">
                         <label for="name">Nombre</label>
                         <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -43,7 +41,7 @@
                         @enderror
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Enter phone">
-                        <label for="phone">Phone</label>
+                        <label for="phone">Teléfono</label>
                         <input id="phone" type="tel" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
                         @error('phone')
                             <span class="invalid-feedback" role="alert">
@@ -52,7 +50,7 @@
                         @enderror
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <label for="password">Password</label>
+                        <label for="password">Contraseña</label>
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
