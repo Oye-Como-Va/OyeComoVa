@@ -1,7 +1,7 @@
 @extends('templates.general')
 
 @section('workingAreaActive')
-    <h4 class = "text-start">Working Area</h4>
+    <h1 class = "text-center">Working Area</h1>
     <div class="workingArea">
         <div class="timeControl">
             <div class="d-flex flex-column align-items-center">
@@ -19,20 +19,27 @@
         </div>
         
     </div>
+    
     <div class="card-body text-center">
-        @foreach($tasks as $task)
-        @if(empty($task))
-            <p>No tenemos ninguna tarea creada</p>
 
-        
+        @if(count($tasks)<0)
+            <p>No tenemos ninguna tarea creada</p>
+            <a href="{{ route('calendar')}}">Crear tare</a>
+
+            @else
+
+            @foreach($tasks as $task)
+            <p>{{$task->name}}</p>
+            <p>{{$task->description}}</p>
+            <p>{{$task->subject_id}}</p>
+            <p>{{$task->pivot->date}}</p>
+            <p>{{$task->pivot->start_time}}</p>
+            <p>{{$task->pivot->end_time}}</p>
+            <a href="" target="_blank" rel="">iniciar</a>
             
-        @else
-        <p>{{ $task->name }}</p>
-        <p>{{ $task->description }}</p> 
+            @endforeach
         @endif
-        
-        
-        @endforeach
+
     </div>
     @endsection
     
