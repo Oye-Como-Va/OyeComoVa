@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon; //para formatear fechas
 use \Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 class TasksController extends Controller
 {
@@ -162,5 +163,20 @@ class TasksController extends Controller
         } else {
             return back()->with('No se ha encontrado la tarea', 'error', 'Oooops');
         }
+
+    }
+
+    public function comprobar_task(){
+
+        $user = User::findOrFail(Auth::id());
+        //$tasks = $user->tasks;
+        //$tasks = DB::table('tasks')
+           // ->join('task_user', 'tasks.id', '=', 'task_user.task_id')
+           // ->where('task_user.user_id', $user->id)
+           // ->orderBy('task_user.date', 'asc')
+           // ->get();
+
+        return view('workingAreaActive', @compact('tasks','user'));
+        
     }
 }

@@ -45,9 +45,11 @@ Route::prefix('/home')->middleware('auth')->group(
                 Route::put('/saveChanges/{id}', [TasksController::class, 'saveChanges'])->name('task.saveChanges');
             }
         );
-        Route::get('/workingArea', function () {
-            return view('workingAreaActive');
-        })->name('workingArea');
+        //Route::get('/workingArea', function () {
+            //return view('workingAreaActive');
+       // })->name('workingArea');
+
+        Route::get('/workingAreaActive',[TasksController::class, 'comprobar_task'])->name('workingArea');
 
         Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
         Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
