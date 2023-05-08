@@ -53,11 +53,11 @@ a {
     transition: 0.5s;
 }
 .bg-custom {
-    background-color: var(--first-color-light)!important;
+    background-color: var(--first-color-light) !important;
 }
 
 .bg-custom-dark {
-    background-color: var(--first-color-dark)!important;
+    background-color: var(--first-color-dark) !important;
 }
 
 .header_title {
@@ -170,7 +170,6 @@ a {
     display: flex;
     justify-content: center;
     width: 10rem;
-    height: 7rem;
 }
 .cardContainer:hover .card {
     box-shadow: 5px 5px 1px var(--first-color-light);
@@ -350,17 +349,150 @@ button:hover {
 
 /*WORKING AREA*/
 .timeControl {
-    background: #333133ea;
+    background: whitesmoke;
     display: flex;
     width: 100%;
     height: 5rem;
     align-items: center;
     justify-content: space-around;
     border-radius: 1rem;
-    color: var(--first-color-light);
+    color: black;
 }
 .timeControl span {
     font-size: 1rem;
+}
+
+.working-inactive {
+    height: 20rem;
+    background-color: #f9f4f4;
+    border-radius: 10px;
+}
+
+.workingContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2rem;
+}
+
+.workingStart .card {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    border: 2px solid var(--first-color-light);
+    box-shadow: 5px 5px 10px rgb(224, 220, 220);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
+    position: relative;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.workingStart .card:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: var(--first-color-light);
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.4s ease-out;
+    color: white;
+}
+
+.workingStart .card:hover:before {
+    transform: scale(100);
+}
+
+.workingStart .cardContainer:hover a {
+    background-color: var(--first-color-light);
+    box-shadow: 5px 5px 1px var(--dark-shadow);
+    color: white;
+}
+.workingStart .cardContainer:hover p {
+    color: white !important;
+}
+
+.workingStart .card div:first-child > p {
+    font-size: 1.6rem;
+}
+
+.corner {
+    content: "";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background-color: var(--first-color-light);
+    border-radius: 0 4px 0 32px;
+}
+
+.play {
+    margin-top: 2px;
+    font-family: "Source Sans Pro", sans-serif;
+    margin-left: 5px;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.cardContent p:first-child {
+    font-size: 2rem;
+}
+
+.workingList {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.task {
+    border-radius: 0.9rem;
+    background-color: var(--first-color-dark);
+    border: 2px solid var(--first-color-light);
+    box-shadow: 5px 5px 10px rgb(224, 220, 220);
+    text-align: center;
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.task.delayed {
+    background-color: var(--dark-shadow);
+}
+
+.card.task .play {
+    font-size: 1rem;
+}
+
+.card.task {
+    padding: 1.5rem;
+}
+
+.workingStart .card.task .corner {
+    width: 100%;
+    background-color: var(--first-color-light);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.workingStart .cardContainer:hover .card.task .corner {
+    background-color: var(--first-color-dark);
+    transition: background-color 0.3s ease-in-out;
+}
+.workingStart .cardContainer:hover .card.task.delayed .corner {
+    background-color: var(--dark-shadow);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.task div p,
+span {
+    font-size: 1rem !important;
 }
 
 /* CALENDAR */
@@ -376,11 +508,20 @@ button:hover {
     font-size: 0.6rem;
 }
 
-#formDelete{
+#formDelete {
     height: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
+    .workingList {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+}
+
+@media screen and (min-width: 1280px) {
     .container {
         margin: calc(var(--header-height) + 4rem) 0 0 0;
         padding-left: calc(var(--nav-width) + 2rem);
@@ -464,14 +605,6 @@ button:hover {
         font-size: 1.2rem;
     }
 
-    .workingArea {
-        width: 100%;
-        display: flex;
-        margin: 0 auto;
-        padding: 1.5rem;
-        gap: 7rem;
-    }
-
     .instructions {
         height: 100vh;
         display: grid;
@@ -489,12 +622,31 @@ button:hover {
         margin: 3rem;
     }
 
+    /* WORKING AREA*/
+    .workingArea {
+        width: 100%;
+        display: flex;
+        margin: 0 auto;
+        padding: 1.5rem;
+        gap: 7rem;
+    }
+
+    .workingContainer {
+        text-align: start;
+    }
+
     .timeControl span {
         font-size: 2rem;
     }
 
     .timeControl {
         padding: 3.5rem;
+    }
+    .workingList {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        min-width: fit-content;
     }
 
     /*CALENDAR*/
@@ -545,8 +697,7 @@ button:hover {
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
     background-color: var(--first-color-dark);
 }
-.carta.isdefault:hover:after{
-
+.carta.isdefault:hover:after {
     background-color: #5db6d9;
 }
 /* .carta:hover:after.isdefault {

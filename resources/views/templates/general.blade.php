@@ -18,12 +18,16 @@
             <nav class="nav">
                 <div> <a href="{{ route('home') }}" class="nav_logo"> <i class='bx bx-home nav_logo-icon'></i> <span
                             class="nav_logo-name">{{ Auth::User()->name }}</span> </a>
-                    <div class="nav_list"> <a href="{{ route('workingArea') }}" class="nav_link active"> <i
+                    <div class="nav_list"> <a href="{{ route('workingArea') }}"
+                            class="nav_link {{ request()->routeIs('workingArea') ? 'active' : '' }}"> <i
                                 class='bx bx-briefcase nav_icon'></i> <span class="nav_name">Working Area</span> </a> <a
-                            href="{{ route('calendar') }}"class="nav_link"> <i
+                            href="{{ route('calendar') }}"class="nav_link {{ request()->routeIs('calendar') ? 'active' : '' }}"> <i
                                 class='bx bx-calendar-exclamation nav_icon'></i> <span class="nav_name">Calendario</span>
-                        </a> <a href="{{ route('courses') }}" class="nav_link"><i class='bx bx-folder nav_icon'></i> <span
+                        </a> <a href="{{ route('courses') }}" class="nav_link {{ request()->routeIs('courses') ? 'active' : '' }}""><i class='bx bx-folder nav_icon'></i> <span
                                 class="nav_name">Cursos</span>
+
+
+                        {{-- !! FALTA PONER CLASE ACTIVE CUANDO DEFINAMOS LAS RUTAS --}}
                         </a> <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span
                                 class="nav_name">Estadísticas</span> </a> <a href="#" class="nav_link"> <i
                                 class='bx bx-medal nav_icon'></i> <span class="nav_name">Logros</span> </a> <a
@@ -39,6 +43,7 @@
         </div>
         @yield('main')
         @yield('workingAreaActive')
+        @yield('workingArea')
         @yield('calendar')
     </div>
 @endsection
