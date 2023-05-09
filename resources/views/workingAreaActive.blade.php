@@ -1,7 +1,7 @@
 @extends('templates.general')
 
 @section('workingAreaActive')
-    <h1 class="text-center">Working Area</h1>
+    <h4 class = "text-start">Working Area</h4>
     <div class="workingArea">
         <div class="timeControl">
             <div class="d-flex flex-column align-items-center">
