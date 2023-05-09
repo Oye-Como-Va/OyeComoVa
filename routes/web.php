@@ -29,6 +29,10 @@ Route::get('/register', function () {
     return view('register');
 })->name('registro');
 
+Route::get('/', function () {
+    return view('formcorreo');
+});
+
 //Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro:
 Route::prefix('/home')->middleware('auth')->group(
     function () {
@@ -58,5 +62,6 @@ Route::prefix('/home')->middleware('auth')->group(
         Route::post('/courses/create', [CoursesController::class, 'create_subject'])->name('create_subject');
 
         Route::get('/courses/{id}/subjects', [CoursesController::class, 'subjects'])->name('subjects');
+
     }
 );
