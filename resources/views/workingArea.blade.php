@@ -15,13 +15,15 @@
                 <div class="cardContainer">
                     <a class="card" href="#">
                         <div class="d-flex w-100 flex-row justify-content-between align-items-center p-3">
-                            <p>{{ $nextTask->pivot->start_time }}</p>
+                            <p> {{ substr($nextTask->pivot->start_time, 0, 5) }} </p>
                             <div class="cardContent d-flex align-items-center flex-column">
-                                <p>Task 1</p>
-                                <p>Subject name</p>
+                                @if (isset($nextTask->subjects))
+                                    <p>{{ $nextTask->subjects->name }}</p>
+                                    <p>{{ $nextTask->subjects->courses->name }}</p>
+                                @endif
                                 <p>Date?</p>
                             </div>
-                            <p>11:30</p>
+                            <p>{{ substr($nextTask->pivot->end_time, 0, 5) }}</p>
                             <div class="corner" href="#">
                                 <div class="play">
                                     <i class='bx bx-play'></i>
@@ -40,12 +42,14 @@
                             <div class="cardContainer">
                                 <a class="card task">
                                     <div class="d-flex mt-4 flex-column w-100">
-                                        <p class="align-self-end">
-                                            Course name
-                                        </p>
-                                        <p class="align-self-end">
-                                            Subject name
-                                        </p>
+                                        @if (isset($task->subjects))
+                                            <p class="align-self-end">
+                                                {{ $task->subjects->course->name }}
+                                            </p>
+                                            <p class="align-self-end">
+                                                {{ $task->subjects->name }}
+                                            </p>
+                                        @endif
                                         <p class="align-self-start">Tarea:
                                             {{ $task->name }}</p>
                                         <p class="align-self-start">Descripción:
