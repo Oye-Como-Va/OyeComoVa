@@ -33,6 +33,8 @@ Route::get('/', function () {
     return view('formcorreo');
 });
 
+Route::post('/contactar', 'EmailController');
+
 //Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro:
 Route::prefix('/home')->middleware('auth')->group(
     function () {
