@@ -74,7 +74,6 @@
         </div>
     </div>
 
-
     <div class="modal fade" id="editTask" data-backdrop="static" data-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdrop" aria-hidden="true">
         <div class="modal-dialog">
