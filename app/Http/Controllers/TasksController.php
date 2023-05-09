@@ -164,6 +164,7 @@ class TasksController extends Controller
             return back()->with('No se ha encontrado la tarea', 'error', 'Oooops');
         }
 
+
     }
 
     public function comprobar_task(){
@@ -178,5 +179,6 @@ class TasksController extends Controller
 
         return view('workingAreaActive', @compact('tasks','user'));
         
+
     }
 }
