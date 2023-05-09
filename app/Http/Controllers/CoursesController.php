@@ -18,12 +18,12 @@ class CoursesController extends Controller
         return view('courses', @compact('courses'));
     }
     public function subjects($id)
-{
-    $course = Course::findOrFail($id);
-    $subjects = $course->subjects;
+    {
+        $course = Course::findOrFail($id);
+        $subjects = $course->subjects;
 
-    return view('subjects', compact('course', 'subjects'));
-}
+        return view('subjects', compact('course', 'subjects'));
+    }
     public function create_course(Request $request)
     {
         try {
@@ -63,5 +63,13 @@ class CoursesController extends Controller
         } catch (Exception $e) {
             return back()->with('mensaje', $e->getMessage());
         }
+    }
+
+    public function get_subjects($id)
+    {
+        $course = Course::findOrFail($id);
+        $subjects = $course->subjects;
+
+        return response()->json($subjects);
     }
 }

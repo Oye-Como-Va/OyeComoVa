@@ -27,24 +27,26 @@
                                 <input type="text" class="form-control" id="description" name="description" required>
                             </div>
                             <div class="mb-3">
-                                <label for="subject" class="form-label">Asignatura: </label>
-                                <select class="form-select" name="subject" id="subject"
-                                    aria-label="Default select example">
+                                <label for="course" class="form-label">Curso: </label>
+                                <select class="form-select" name="course" id="course"
+                                    aria-label="Default select example" onchange="insertCourse()">
                                     <option> - </option>
                                     @if ($user->courses())
                                         {
                                         @foreach ($user->courses as $course)
                                             @if (!$course->isdefault)
-                                                @foreach ($course->subjects as $subject)
-                                                    <option value="{{ $subject->id }}">{{ $subject->name }}
-                                                        ({{ $course->name }})
-                                                    </option>
-                                                @endforeach
+                                                <option value="{{ $course->id }}">{{ $course->name }}</option>
                                             @endif
                                         @endforeach
                                         }
                                     @endif
-
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Asignatura: </label>
+                                <select class="form-select" name="subject" id="subject"
+                                    aria-label="Default select example">
+                                    <option> - </option>
                                 </select>
                             </div>
                         </div>
@@ -97,6 +99,13 @@
                                 <label for="descriptionEdit" class="form-label">Descripción:</label>
                                 <input type="text" class="form-control" id="descriptionEdit" name="descriptionEdit"
                                     required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="courseEdit" class="form-label">Curso: </label>
+                                <select class="form-select" name="courseEdit" id="courseEdit"
+                                    aria-label="Default select example" disabled>
+                                    <option> - </option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="subjectEdit" class="form-label">Asignatura: </label>
@@ -176,5 +185,36 @@
         hour.setMinutes(hour.getMinutes() + 1);
         hour = hour.toTimeString().slice(0, 5);
         endTime.setAttribute("min", hour);
+    }
+
+
+    async function getSubjects(course) {
+        try {
+            let response = await fetch(`/home/courses/${course}/getSubjects`);
+            let data = await response.json();
+            return data;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
+    }
+
+    function insertCourse() {
+        let course = document.getElementById("course").value;
+        let subjectInput = document.getElementById('subject');
+        subjectInput.options.length = 0; //borramos por si antes ya seleccionó otro curso
+
+        getSubjects(course)
+            .then((subjects) => {
+                subjects.forEach(subject => {
+                    let option = document.createElement("option");
+                    option.value = subject.id;
+                    option.text = subject.name;
+                    subjectInput.appendChild(option);
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 </script>

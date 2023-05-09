@@ -113,7 +113,8 @@ class TasksController extends Controller
             $subject = Subject::findOrFail($taskEdit->subject_id);
             $response = array(
                 "taskEdit" => $taskEdit,
-                "subject" => $subject
+                "subject" => $subject,
+                "course" => $subject->course
             );
             return response()->json($response);
         }
