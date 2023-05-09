@@ -104,6 +104,7 @@
                                 </div>
                             </a>
                         </div>
+                    </div>
                 @endforeach
             </div>
         @endif
