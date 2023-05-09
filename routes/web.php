@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\WorkingAreaController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,9 +46,11 @@ Route::prefix('/home')->middleware('auth')->group(
                 Route::put('/saveChanges/{id}', [TasksController::class, 'saveChanges'])->name('task.saveChanges');
             }
         );
-        Route::get('/workingArea', function () {
-            return view('workingAreaActive');
-        })->name('workingArea');
+        //Route::get('/workingArea', function () {
+        //return view('workingAreaActive');
+        // })->name('workingArea');
+
+        Route::get('/workingArea', [WorkingAreaController::class, 'comprobar_task'])->name('workingArea');
 
         Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
         Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
