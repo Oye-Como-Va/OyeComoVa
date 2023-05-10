@@ -1,7 +1,7 @@
 @extends('templates.general')
 @section('main')
     <div class="container">
-        <h1>Analytics Dashboard</h1>
+        <h1>Tus analíticas</h1>
 
         <div class="row mt-5">
             <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
