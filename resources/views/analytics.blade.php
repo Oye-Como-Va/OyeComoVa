@@ -1,11 +1,79 @@
 @extends('templates.general')
 @section('main')
-<p>Dias totales trabajados: {{$totalDaysWorked}}</p>
-<p>Número de horas programadas: {{$programedTime}} </p>
-<p>Número de tareas completadas: {{$completedTasksCount }}</p>
-<p>Número de tareas pendientes: {{$pendingTasksCount }}</p>
-<p>Número de tareas atrasadas: {{$delayedTasks }}</p>
-<p>Horas totales trabajadas: {{$workingTime}}</p>
-<p>Tiempo total de retraso al empezar las actividades: {{$startDelayedTime}}</p>
-<p>Tiempo total de actividades acabadas antes de tiempo: {{$endDelayedTime}}</p>
+    <div class="container">
+        <h1>Analytics Dashboard</h1>
+
+        <div class="row mt-5">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
+                <div class="card w-100 boxshadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Días totales trabajados</h5>
+                        <p class="card-text colorCustom">{{ $totalDaysWorked }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
+                <div class="card w-100 boxshadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Tiempo total programado</h5>
+                        <p class="card-text colorCustom">{{ $programedTime }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
+                <div class="card w-100 boxshadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Número de tareas completadas</h5>
+                        <p class="card-text colorCustom">{{ $completedTasksCount }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md-6 col-sm-12 mb-4">
+                <div class="card w-100 boxshadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Número de tareas pendientes</h5>
+                        <p class="card-text colorCustom">{{ $pendingTasksCount }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 mb-4">
+                <div class="card w-100 boxshadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Horas totales trabajadas</h5>
+                        <p class="card-text colorCustom">{{ $workingTime}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
+                <div class="card w-100 boxshadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Número de tareas atrasadas</h5>
+                        <p class="card-text colorCustom">{{ $delayedTasks  }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
+                <div class="card w-100 boxshadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Tiempo total de retraso al empezar las actividades</h5>
+                        <p class="card-text colorCustom">{{ $startDelayedTime }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
+                <div class="card w-100 boxshadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Tiempo total de actividades acabadas antes de tiempo</h5>
+                        <p class="card-text colorCustom">{{ $endDelayedTime }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 @endsection
