@@ -59,6 +59,23 @@ a {
 .bg-custom-dark {
     background-color: var(--first-color-dark) !important;
 }
+.colorCustom {
+    color: var(--first-color-light) !important;
+    font-size: 2rem;
+}
+.card:hover .colorCustom {
+    font-size: 2.5rem;
+    transition: 0.5s;
+}
+.card:not(:hover) .colorCustom {
+    font-size: 2rem;
+    transition: 0.5s;
+}
+.boxshadow {
+    -webkit-box-shadow: 10px 10px 5px -3px rgba(96, 130, 167, 0.51);
+    -moz-box-shadow: 10px 10px 5px -3px rgba(96, 130, 167, 0.51);
+    box-shadow: 10px 10px 5px -3px rgba(96, 130, 167, 0.51);
+}
 
 .header_title {
     font-family: var(--brand-font);
