@@ -1,6 +1,7 @@
 @extends('templates.general')
+@section('main')
 <h2>Formulario de contacto</h2>
-<form action={{route('contact')}} method="POST">
+<form action= method="POST">
      {{ csrf_field() }}
     <div class="form-group">
         <label for="name">Nombre</label>
@@ -14,3 +15,4 @@
         <button type="submit" id='btn-contact' class="btn">Enviar</button>
     </div>
 </form>
+@endsection

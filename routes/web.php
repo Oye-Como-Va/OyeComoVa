@@ -30,11 +30,11 @@ Route::get('/register', function () {
 })->name('registro');
 
 
-Route::get('/', function () {
+Route::get('/formcorreo', function () {
     return view('formcorreo');
 });
 
-Route::post('/contactar', 'EmailController');
+Route::post('contacto', [EmailController::class]);
 
 
 
