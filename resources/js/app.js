@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 type: "GET",
                 headers: { "X-CSRF-Token": tokenUpdate },
                 dataType: "json",
-                success: function ({ taskEdit, subject }) {
+                success: function ({ taskEdit, subject, course }) {
                     console.log(taskEdit);
                     document
                         .getElementById("formEdit")
@@ -128,8 +128,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         option.value = subject.id;
                         option.text = subject.name;
                         option.setAttribute("selected", true);
-                        console.log(option);
                         $("#subjectEdit").append(option);
+
+                        let optionCourse = document.createElement("option");
+                        optionCourse.value = course.id;
+                        optionCourse.text = course.name;
+                        optionCourse.setAttribute("selected", true);
+                        $("#courseEdit").append(optionCourse);
                     }
                 },
                 error: function (response) {

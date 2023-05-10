@@ -63,6 +63,10 @@ a {
 .header_title {
     font-family: var(--brand-font);
 }
+.header_title span {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px !important;
+}
 .landing h1 {
     text-shadow: white 1px 1px 2px;
 }

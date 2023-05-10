@@ -29,11 +29,15 @@ Route::get('/register', function () {
     return view('register');
 })->name('registro');
 
+
 Route::get('/', function () {
     return view('formcorreo');
 });
 
 Route::post('/contactar', 'EmailController');
+
+
+
 
 //Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro:
 Route::prefix('/home')->middleware('auth')->group(
@@ -56,13 +60,14 @@ Route::prefix('/home')->middleware('auth')->group(
         //return view('workingAreaActive');
         // })->name('workingArea');
 
+        Route::get('/courses/{id}/getSubjects', [CoursesController::class, 'get_subjects'])->name('get_subjects');
+
         Route::get('/workingArea', [WorkingAreaController::class, 'comprobar_task'])->name('workingArea');
 
         Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
         Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
 
         Route::post('/courses/create', [CoursesController::class, 'create_subject'])->name('create_subject');
-
         Route::get('/courses/{id}/subjects', [CoursesController::class, 'subjects'])->name('subjects');
 
     }

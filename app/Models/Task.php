@@ -10,7 +10,7 @@ class Task extends Model
     use HasFactory;
     public function subjects()
     {
-        return $this->belongsTo(Subject::class);
+        return $this->belongsTo(Subject::class, 'subject_id');
     }
     public function working_areas()
     {
