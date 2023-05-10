@@ -1,7 +1,6 @@
 @extends('templates.general')
 
 @section('workingArea')
-    <h4>Working Area</h4>
 
     @if (!isset($nextTask))
         <div class="d-flex flex-column justify-content-center align-items-center w-100 working-inactive">
@@ -10,18 +9,19 @@
         </div>
     @else
         <div class="workingContainer">
-            <h4>Próxima tarea:</h4>
             <div class="workingStart">
+                <h4>Próxima tarea: {{ date('d/m', strtotime($nextTask->pivot->date)) }}</h4>
                 <div class="cardContainer">
-                    <a class="card" href="#">
+                    <a class="card" href="#"
+                        @if (isset($nextTask->subjects)) style = "border: 2px solid {{ $nextTask->subjects->color }}" @endif>
                         <div class="d-flex w-100 flex-row justify-content-between align-items-center p-3">
                             <p> {{ substr($nextTask->pivot->start_time, 0, 5) }} </p>
                             <div class="cardContent d-flex align-items-center flex-column">
+                                <p>{{ $nextTask->name }}</p>
                                 @if (isset($nextTask->subjects))
-                                    <p>{{ $nextTask->subjects->name }}</p>
-                                    <p>{{ $nextTask->subjects->courses->name }}</p>
+                                    <p>{{ $nextTask->subjects->course->name }} / {{ $nextTask->subjects->name }}</p>
                                 @endif
-                                <p>Date?</p>
+
                             </div>
                             <p>{{ substr($nextTask->pivot->end_time, 0, 5) }}</p>
                             <div class="corner" href="#">
@@ -40,7 +40,8 @@
                     @foreach ($orderedTasks as $task)
                         <div class="workingStart">
                             <div class="cardContainer">
-                                <a class="card task">
+                                <a class="card task"
+                                    @if (isset($task->subjects)) style = "border: 2px solid {{ $task->subjects->color }}" @endif>
                                     <div class="d-flex mt-4 flex-column w-100">
                                         @if (isset($task->subjects))
                                             <p class="align-self-end">
@@ -71,47 +72,49 @@
                             </div>
                         </div>
                     @endforeach
-                @else
                 </div>
+            @else
             @endif
-        </div>
-        @if (count($delayedTasks) > 0)
-            <h4>Tareas atrasadas:</h4>
-            <div class="workingList">
-                @foreach ($delayedTasks as $task)
-                    <div class="workingStart">
-                        <div class="cardContainer">
-                            <a class="card task delayed">
-                                <div class="d-flex mt-4 flex-column w-100">
-                                    <p class="align-self-end">
-                                        Course name
-                                    </p>
-                                    <p class="align-self-end">
-                                        Subject name
-                                    </p>
-                                    <p class="align-self-start">Tarea:
-                                        {{ $task->name }}</p>
-                                    <p class="align-self-start">Descripción:
-                                        {{ $task->description }}
+            @if (count($delayedTasks) > 0)
+                <h4>Tareas atrasadas:</h4>
+                <div class="workingList">
+                    @foreach ($delayedTasks as $task)
+                        <div class="workingStart">
+                            <div class="cardContainer">
+                                <a class="card task delayed"
+                                    @if (isset($task->subjects)) style = "border: 2px solid {{ $task->subjects->color }}" @endif>
+                                    <div class="d-flex mt-4 flex-column w-100">
+                                        @if (isset($task->subjects))
+                                            <p class="align-self-end">
+                                                {{ $task->subjects->course->name }}
+                                            </p>
+                                            <p class="align-self-end">
+                                                {{ $task->subjects->name }}
+                                            </p>
+                                        @endif
+                                        <p class="align-self-start">Tarea:
+                                            {{ $task->name }}</p>
+                                        <p class="align-self-start">Descripción:
+                                            {{ $task->description }}
 
-                                    <div class="corner" href="#">
-                                        <div class="play">
-                                            <div class="d-flex align-items-center justify-content-around">
-                                                <p>{{ date('d/m', strtotime($task->pivot->date)) }}</p>
-                                                <p>{{ substr($task->pivot->start_time, 0, 5) }} -
-                                                    {{ substr($task->pivot->end_time, 0, 5) }}
-                                                </p>
-                                                <i class='bx bx-play'></i>
+                                        <div class="corner" href="#">
+                                            <div class="play">
+                                                <div class="d-flex align-items-center justify-content-around">
+                                                    <p>{{ date('d/m', strtotime($task->pivot->date)) }}</p>
+                                                    <p>{{ substr($task->pivot->start_time, 0, 5) }} -
+                                                        {{ substr($task->pivot->end_time, 0, 5) }}
+                                                    </p>
+                                                    <i class='bx bx-play'></i>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-        @endif
+                    @endforeach
+                </div>
+            @endif
+        </div>
     @endif
-
 @endsection
