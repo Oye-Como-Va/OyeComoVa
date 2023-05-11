@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
     public function working_areas()
     {
-        return $this->hasOne(Working_area::class);
+        return $this->hasMany(Working_area::class);
     }
     public function tasks()
     {
