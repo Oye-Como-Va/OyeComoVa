@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user_achievement', function (Blueprint $table) {
+        Schema::create('achievement_user', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('achievement_id');
@@ -26,10 +26,10 @@ return new class extends Migration
             ' FOR EACH ROW '.
             ' BEGIN ' .
                 ' IF NEW.completed_tasks > 1 THEN '.
-                    ' INSERT INTO user_achievement (user_id, achievement_id) VALUES (NEW.id, 1); '.
+                    ' INSERT INTO achievement_user (user_id, achievement_id) VALUES (NEW.id, 1); '.
                 ' END IF; ' .
                 ' IF NEW.completed_tasks > 5 THEN ' .
-                    ' INSERT INTO user_achievement (user_id, achievement_id) VALUES (NEW.id, 2); ' .
+                    ' INSERT INTO achievement_user (user_id, achievement_id) VALUES (NEW.id, 2); ' .
                 ' END IF; ' .
 
             ' END; '
@@ -41,7 +41,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user_achievement');
+        Schema::dropIfExists('achievement_user');
         DB::unprepared('DROP TRIGGER IF EXISTS tr_user_achievements');
     }
 };

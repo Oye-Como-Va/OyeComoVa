@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\AchievementsController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\WorkingAreaController;
@@ -58,6 +59,8 @@ Route::prefix('/home')->middleware('auth')->group(
         Route::get('/workingArea', [WorkingAreaController::class, 'comprobar_task'])->name('workingArea');
 
         Route::get('/analytics', [AnalyticsController::class, 'analytics'])->name('analytics');
+
+        Route::get('/achievements', [AchievementsController::class, 'show_achievements'])->name('achievements');
 
         Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
         Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
