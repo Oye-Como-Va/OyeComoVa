@@ -1,4 +1,4 @@
-@extends('templates.general')
+
 
 <h2>Nombre: {{$name}}</h2>
 

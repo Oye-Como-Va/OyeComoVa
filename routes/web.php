@@ -4,6 +4,7 @@ use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\WorkingAreaController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,7 +36,10 @@ Route::get('/formcorreo', function () {
     return view('formcorreo');
 });
 
-Route::post('contacto', [EmailController::class]);
+
+Route::post('/contacto', [\App\Http\Controllers\EmailController::class, 'contacto'])->name('contacto');
+
+
 
 
 
@@ -43,6 +47,10 @@ Route::post('contacto', [EmailController::class]);
 //Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro:
 Route::prefix('/home')->middleware('auth')->group(
     function () {
+
+
+
+
         Route::get('/', function () {
             return view('/main');
         })->name('home');
