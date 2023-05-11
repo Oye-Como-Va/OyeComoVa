@@ -187,5 +187,22 @@ class TasksController extends Controller
             toastr('No se ha encontrado la tarea', 'error', 'Ooops');
             return back();
         }
+
+
+    }
+
+    public function comprobar_task(){
+
+        $user = User::findOrFail(Auth::id());
+        $tasks = $user->tasks;
+        //$tasks = DB::table('tasks')
+           // ->join('task_user', 'tasks.id', '=', 'task_user.task_id')
+           // ->where('task_user.user_id', $user->id)
+           // ->orderBy('task_user.date', 'asc')
+           // ->get();
+
+        return view('workingAreaActive', @compact('tasks','user'));
+        
+
     }
 }
