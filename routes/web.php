@@ -4,7 +4,7 @@ use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\WorkingAreaController;
-
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
