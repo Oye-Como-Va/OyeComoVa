@@ -1,4 +1,4 @@
-@extends('templates.template')
+@extends('templates.loginTemplate')
 
 @section('landing')
     <div class="welcome">
@@ -40,8 +40,39 @@
         </div>
     </div>
 
-    <div class="invite">
+    <div class="invite  text-center">
 
+        <span class="login100-form-title p-b-34 p-t-27">
+            Formulario de contacto
+        </span>
+
+        <p>Si tienes duda envianos la consulta</p>
+
+        <form action="{{ route('contacto') }}" method="POST">
+            {{ csrf_field() }}
+
+            <div class="wrap-input100 validate-input">
+                <label for="name">Nombre</label>
+                <input  type="text" name="name" >
+             
+            </div>
+
+            <div class="wrap-input100 validate-input">
+                <label for="msg">Comentario</label>
+                <input  type="text" name="msg" >
+             
+            </div>
+
+
+          
+         
+            <div class="container-login100-form-btn">
+                <button type="submit" class="login100-form-btn">
+                    Enviar
+                </button>
+
+            </div>
+        </form>
     </div>
 
 
