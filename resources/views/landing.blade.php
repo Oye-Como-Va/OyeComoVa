@@ -42,37 +42,44 @@
 
     <div class="invite  text-center">
 
-        <span class="login100-form-title p-b-34 p-t-27">
-            Formulario de contacto
-        </span>
+        <div class="container-login100" style="background-image: url({{ URL::asset('fondo.webp') }});">
+            <div class="wrap-login100">
+                <span class="login100-form-logo">
+                    <h1 class="brandH1">Formulario de contacto</h1>
+                </span>
+                <form method="POST" action="{{route('contacto')}}">
+                    @csrf
 
-        <p>Si tienes duda envianos la consulta</p>
 
-        <form action="{{ route('contacto') }}" method="POST">
-            {{ csrf_field() }}
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Consulta tu duda
+                    </span>
 
-            <div class="wrap-input100 validate-input">
-                <label for="name">Nombre</label>
-                <input  type="text" name="name" >
-             
+                    <div class="wrap-input100 validate-input">
+                        <label for="name">Nombre de contacto</label>
+                        <input  type="text" class="form-control" name="name">
+                    
+                    </div>
+
+                    <div class="wrap-input100 validate-input">
+                        <label for="msg">Mensaje de la duda</label>
+                        <input  type="text" class="form-control" name="msg">
+                    
+                    </div>
+                    
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn">
+                            Enviar
+                        </button>
+
+                    </div>
+                </form>
             </div>
-
-            <div class="wrap-input100 validate-input">
-                <label for="msg">Comentario</label>
-                <input  type="text" name="msg" >
-             
-            </div>
+        </div>
+    </div>
 
 
-          
-         
-            <div class="container-login100-form-btn">
-                <button type="submit" class="login100-form-btn">
-                    Enviar
-                </button>
-
-            </div>
-        </form>
+        
     </div>
 
 
