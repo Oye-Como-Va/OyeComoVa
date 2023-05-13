@@ -45,7 +45,7 @@ class TasksController extends Controller
             DB::beginTransaction();
             $user = User::findOrFail(Auth::id());
             $request->validate([
-                'name' => 'required|regex:/^[\pL\s\-]+$/u|min:1|max:255',
+                'name' => 'required|regex:/^[\pL\d\s\-]+$/u|min:1|max:255',
                 'description' => 'required|string|min:1',
                 'date' => 'required|date_format:Y-m-d',
                 'start_time' => 'required|date_format:H:i',
@@ -188,21 +188,6 @@ class TasksController extends Controller
             return back();
         }
 
-
-    }
-
-    public function comprobar_task(){
-
-        $user = User::findOrFail(Auth::id());
-        $tasks = $user->tasks;
-        //$tasks = DB::table('tasks')
-           // ->join('task_user', 'tasks.id', '=', 'task_user.task_id')
-           // ->where('task_user.user_id', $user->id)
-           // ->orderBy('task_user.date', 'asc')
-           // ->get();
-
-        return view('workingAreaActive', @compact('tasks','user'));
-        
 
     }
 }

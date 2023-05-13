@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
+import toast from "toastr/toastr/css";
 
 export default defineConfig({
     plugins: [
@@ -11,6 +12,9 @@ export default defineConfig({
                 "resources/css/main.css",
                 "resources/js/main.js",
                 "resources/css/util.css",
+                "resources/js/workingArea.js",
+                "resources/js/calendar.js",
+                toast,
             ],
             refresh: true,
         }),
