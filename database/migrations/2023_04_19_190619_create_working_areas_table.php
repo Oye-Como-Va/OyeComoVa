@@ -18,7 +18,7 @@ return new class extends Migration
             $table->time('start_time');
             $table->time('start_time_real');
             $table->time('end_time');
-            $table->time('end_time_real');
+            $table->time('end_time_real')->nullable()->default(null);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('task_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

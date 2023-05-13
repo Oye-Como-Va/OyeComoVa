@@ -12,25 +12,31 @@
             <div class="workingStart">
                 <h4>Próxima tarea: {{ date('d/m', strtotime($nextTask->pivot->date)) }}</h4>
                 <div class="cardContainer">
-                    <a class="card" href="#"
-                        @if (isset($nextTask->subjects)) style = "border: 2px solid {{ $nextTask->subjects->color }}" @endif>
-                        <div class="d-flex w-100 flex-row justify-content-between align-items-center p-3">
-                            <p> {{ substr($nextTask->pivot->start_time, 0, 5) }} </p>
-                            <div class="cardContent d-flex align-items-center flex-column">
-                                <p>{{ $nextTask->name }}</p>
-                                @if (isset($nextTask->subjects))
-                                    <p>{{ $nextTask->subjects->course->name }} / {{ $nextTask->subjects->name }}</p>
-                                @endif
-
-                            </div>
-                            <p>{{ substr($nextTask->pivot->end_time, 0, 5) }}</p>
-                            <div class="corner" href="#">
-                                <div class="play">
-                                    <i class='bx bx-play'></i>
+                    <form action={{ route('create_working') }} method="POST">
+                        @csrf
+                        <input type="hidden" value={{ $nextTask->id }} name="id" id="id">
+                        <button type="submit" class="card">
+                            <div class="d-flex w-100 flex-row justify-content-between align-items-center p-3">
+                                <p> {{ substr($nextTask->pivot->start_time, 0, 5) }} </p>
+                                <div class="cardContent d-flex align-items-center flex-column">
+                                    <p>{{ $nextTask->name }}</p>
+                                    @if (isset($nextTask->subjects))
+                                        <p class="d-flex align-items-center gap-2 fw-bold">
+                                            {{ $nextTask->subjects->course->name }}
+                                            <span
+                                                style="color: {{ $nextTask->subjects->color }}">{{ $nextTask->subjects->name }}</span>
+                                        </p>
+                                    @endif
+                                </div>
+                                <p>{{ substr($nextTask->pivot->end_time, 0, 5) }}</p>
+                                <div class="corner" href="#">
+                                    <div class="play">
+                                        <i class='bx bx-play'></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
+                        </button>
+                    </form>
                 </div>
             </div>
 
@@ -40,14 +46,13 @@
                     @foreach ($orderedTasks as $task)
                         <div class="workingStart">
                             <div class="cardContainer">
-                                <a class="card task"
-                                    @if (isset($task->subjects)) style = "border: 2px solid {{ $task->subjects->color }}" @endif>
+                                <a class="card task">
                                     <div class="d-flex mt-4 flex-column w-100">
                                         @if (isset($task->subjects))
                                             <p class="align-self-end">
                                                 {{ $task->subjects->course->name }}
                                             </p>
-                                            <p class="align-self-end">
+                                            <p class="align-self-end" style="color: {{ $task->subjects->color }}">
                                                 {{ $task->subjects->name }}
                                             </p>
                                         @endif
@@ -81,14 +86,13 @@
                     @foreach ($delayedTasks as $task)
                         <div class="workingStart">
                             <div class="cardContainer">
-                                <a class="card task delayed"
-                                    @if (isset($task->subjects)) style = "border: 2px solid {{ $task->subjects->color }}" @endif>
+                                <a class="card task delayed">
                                     <div class="d-flex mt-4 flex-column w-100">
                                         @if (isset($task->subjects))
                                             <p class="align-self-end">
                                                 {{ $task->subjects->course->name }}
                                             </p>
-                                            <p class="align-self-end">
+                                            <p class="align-self-end" style="color: {{ $task->subjects->color }}">
                                                 {{ $task->subjects->name }}
                                             </p>
                                         @endif

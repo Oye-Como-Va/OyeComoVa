@@ -81,7 +81,7 @@ a {
     font-family: var(--brand-font);
 }
 .header_title span {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     font-size: 10px !important;
 }
 .landing h1 {
@@ -441,6 +441,10 @@ button:hover {
 
 .workingStart .card div:first-child > p {
     font-size: 1.6rem;
+}
+
+.workingStart form {
+    width: 100%;
 }
 
 .corner {
