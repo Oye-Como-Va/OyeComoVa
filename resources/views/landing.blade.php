@@ -42,7 +42,7 @@
 
     <div class="invite  text-center">
 
-        <div class="container-login100" style="background-image: url({{ URL::asset('fondo.webp') }});">
+        <div class="container-login100">
             <div class="wrap-login100">
                 <span class="login100-form-logo">
                     <h1 class="brandH1">Formulario de contacto</h1>
