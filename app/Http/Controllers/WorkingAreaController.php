@@ -19,7 +19,24 @@ class WorkingAreaController extends Controller
         })->with('subjects.course')->orderBy('task_user.date', 'asc')->orderBy('task_user.start_time', 'asc')->get();
 
         $nextTask = $orderedTasks->shift();
-        $delayedTasks = $user->tasks()->where('date', '<', now())->with('subjects.course')->orderBy('task_user.date', 'asc')->orderBy('task_user.start_time', 'asc')->get();
+        //$delayedTasks = $user->tasks()->where('date', '<', now())->with('subjects.course')->orderBy('task_user.date', 'asc')->orderBy('task_user.start_time', 'asc')->get();
+
+
+        $delayedTasks = $user->tasks()
+    ->where(function ($query) {
+        $query->where('date', '<', now())
+            ->orWhere(function ($query) {
+                $query->where('date', now()->toDateString())
+                    ->where(function ($query) {
+                        $query->where('start_time', '<', now()->toTimeString())
+                            ->orWhere('start_time', '=', now()->toTimeString());
+                    });
+            });
+    })
+    ->with('subjects.course')
+    ->orderBy('date', 'asc')
+    ->orderBy('start_time', 'asc')
+    ->get();
 
         return view('workingArea', @compact('orderedTasks', 'nextTask', 'delayedTasks', 'user'));
     }
