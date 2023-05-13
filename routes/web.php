@@ -59,6 +59,8 @@ Route::prefix('/home')->middleware('auth')->group(
         Route::get('/workingArea', [WorkingAreaController::class, 'comprobar_task'])->name('workingArea');
         Route::post('/workingArea/start', [WorkingAreaController::class, 'create_working'])->name('create_working');
         Route::post('/workingArea/start/end', [WorkingAreaController::class, 'end_task'])->name('end_task');
+        Route::post('/workingArea/create_note', [WorkingAreaController::class, 'create_note'])->name('create_note');
+
         //courses
         Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
         Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
