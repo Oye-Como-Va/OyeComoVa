@@ -60,8 +60,8 @@
             <button type="submit">TERMINAR</button>
         </form>
     </div>
+    @vite(['resources/js/workingArea.js'])
 @endsection
-
 <script>
     const working_id = "{{ $working_id }}";
     const urlNote = "{{ route('create_note') }}";
