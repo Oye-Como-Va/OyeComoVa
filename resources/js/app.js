@@ -1,3 +1,4 @@
+import * as bootstrap from "bootstrap";
 import "./bootstrap";
 import "toastr/build/toastr.min.css";
 
