@@ -9,7 +9,9 @@
                 <span class="login100-form-logo">
                     <h1 class="brandH1">Oye como va</h1>
                 </span>
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('user.update', ['id' => $user->id]) }}">
+
+
                     @csrf
 
 
@@ -19,13 +21,13 @@
 
                     <div class="wrap-input100 validate-input">
                         <label for="name">Nombre</label>
-                        <input  type="text" class="form-control" name="name">
+                        <input  type="text" class="form-control" name="name" id="name">
                     
                     </div>
 
                     <div class="wrap-input100 validate-input">
                         <label for="surname">Apellido</label>
-                        <input  type="text" class="form-control" name="surname">
+                        <input  type="text" class="form-control" name="surname" id="surname">
                     
                     </div>
 
@@ -40,7 +42,7 @@
                     </div>
                     <div class="wrap-input100 validate-input">
                         <label for="phone">Telefono</label>
-                        <input  type="text" class="form-control" name="phone">
+                        <input  type="text" class="form-control" name="phone" id="phone">
                     
                     </div>
                     
