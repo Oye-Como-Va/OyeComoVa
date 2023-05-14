@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('landing');
 });
 
+Route::get('/modificarusuario', function () {
+    return view('modificarusuario');
+});
+
 Route::get('/login', function () {
     return view('login');
 })->name('login');
