@@ -46,6 +46,11 @@
                         <input  type="text" class="form-control" name="phone" id="phone" value="{{$user->phone}}">
                     
                     </div>
+
+                    <div class="wrap-input100 validate-input">
+                        <label for="img">Imagen: </label>
+                        <input type="file" name="img" id="img" class="form-control" autofocus required value="{{$user->profile_image}}">
+                    </div>
                     
                     <div class="container-login100-form-btn">
                         <button type="submit" class="login100-form-btn">
