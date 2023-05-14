@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkingAreaController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::get('/', function () {
     return view('landing');
 });
 
+
+
 Route::get('/login', function () {
     return view('login');
 })->name('login');
@@ -38,6 +41,12 @@ Route::post('/contacto', [\App\Http\Controllers\EmailController::class, 'contact
 //Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro:
 Route::prefix('/home')->middleware('auth')->group(
     function () {
+
+
+
+        Route::get('/modificarusuario', [UserController::class, 'edit'] );
+
+
         Route::get('/', function () {
             return view('/main');
         })->name('home');
