@@ -35,16 +35,7 @@ Route::get('/register', function () {
 })->name('registro');
 
 
-Route::get('/formcorreo', function () {
-    return view('formcorreo');
-});
-
-
 Route::post('/contacto', [\App\Http\Controllers\EmailController::class, 'contacto'])->name('contacto');
-
-
-
-
 
 
 //Aplicamos el middleware a todas las rutas porque no puede hacerse uso de la app sin registro:
@@ -52,12 +43,15 @@ Route::prefix('/home')->middleware('auth')->group(
     function () {
 
 
+
         Route::get('/modificarusuario', [UserController::class, 'edit'] );
+
 
         Route::get('/', function () {
             return view('/main');
         })->name('home');
 
+        //calendar
         Route::prefix('/calendar')->group(
             function () {
                 Route::get('/', [TasksController::class, 'show_tasks'])->name('calendar');
@@ -68,21 +62,20 @@ Route::prefix('/home')->middleware('auth')->group(
                 Route::put('/saveChanges/{id}', [TasksController::class, 'saveChanges'])->name('task.saveChanges');
             }
         );
-        //Route::get('/workingArea', function () {
-        //return view('workingAreaActive');
-        // })->name('workingArea');
-
         Route::get('/courses/{id}/getSubjects', [CoursesController::class, 'get_subjects'])->name('get_subjects');
 
+        //working area
         Route::get('/workingArea', [WorkingAreaController::class, 'comprobar_task'])->name('workingArea');
+        Route::post('/workingArea/start', [WorkingAreaController::class, 'create_working'])->name('create_working');
+        Route::post('/workingArea/start/end', [WorkingAreaController::class, 'end_task'])->name('end_task');
+        Route::post('/workingArea/create_note', [WorkingAreaController::class, 'create_note'])->name('create_note');
 
-        Route::get('/analytics', [AnalyticsController::class, 'analytics'])->name('analytics');
-
+        //courses
         Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
         Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
-
         Route::post('/courses/create', [CoursesController::class, 'create_subject'])->name('create_subject');
         Route::get('/courses/{id}/subjects', [CoursesController::class, 'subjects'])->name('subjects');
 
+        Route::get('/analytics', [AnalyticsController::class, 'analytics'])->name('analytics');
     }
 );

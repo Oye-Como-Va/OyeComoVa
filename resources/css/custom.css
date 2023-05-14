@@ -81,7 +81,7 @@ a {
     font-family: var(--brand-font);
 }
 .header_title span {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     font-size: 10px !important;
 }
 .landing h1 {
@@ -379,8 +379,9 @@ button:hover {
     border-radius: 1rem;
     color: black;
 }
+
 .timeControl span {
-    font-size: 1rem;
+    font-size: 0.7rem;
 }
 
 .working-inactive {
@@ -441,6 +442,10 @@ button:hover {
 
 .workingStart .card div:first-child > p {
     font-size: 1.6rem;
+}
+
+.workingStart form {
+    width: 100%;
 }
 
 .corner {
@@ -514,6 +519,45 @@ button:hover {
 .task div p,
 span {
     font-size: 1rem !important;
+}
+
+/* NOTES WORKING AREA*/
+
+.notesArea ul,
+li {
+    list-style: none;
+}
+
+.notesArea ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+    justify-content: center;
+}
+.notesArea ul li {
+    text-decoration: none;
+    color: #000;
+    background: #ffc;
+    display: block;
+    width: 15rem;
+    height: 15rem;
+    padding: 1rem;
+}
+
+.notesArea ul li a {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.notesArea textarea {
+    width: 100%;
+    height: 80%;
+    background-color: transparent;
+    border: none;
 }
 
 /* CALENDAR */
@@ -647,9 +691,7 @@ span {
     .workingArea {
         width: 100%;
         display: flex;
-        margin: 0 auto;
-        padding: 1.5rem;
-        gap: 7rem;
+        gap: 2rem;
     }
 
     .workingContainer {
@@ -668,6 +710,10 @@ span {
         grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
         min-width: fit-content;
+    }
+
+    .notesArea ul {
+        justify-content: flex-start;
     }
 
     /*CALENDAR*/
