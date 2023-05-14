@@ -39,7 +39,7 @@
         <div class="row">
             <div class="col-12 col-sm-4 mb-4 cardContainer">
                 <!-- Card 4 -->
-                <a href="{{ route('workingArea') }}">
+                <a href="{{ route('analytics') }}">
                     <section class="card">
                         <div class="icon d-flex flex-column">
                             <img src="{{ URL::asset('img/barChart.png') }}" class="svg" />

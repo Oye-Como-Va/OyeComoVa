@@ -14,7 +14,7 @@ class Working_area extends Model
     }
     public function tasks()
     {
-        return $this->belongsTo(Task::class);
+        return $this->belongsTo(Task::class, 'task_id');
     }
     public function notes()
     {

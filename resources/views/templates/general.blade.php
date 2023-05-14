@@ -24,16 +24,18 @@
                             href="{{ route('calendar') }}"class="nav_link {{ request()->routeIs('calendar') ? 'active' : '' }}">
                             <i class='bx bx-calendar-exclamation nav_icon'></i> <span class="nav_name">Calendario</span>
                         </a> <a href="{{ route('courses') }}"
-                            class="nav_link {{ request()->routeIs('courses') ? 'active' : '' }}""><i
+                            class="nav_link {{ request()->routeIs('courses') ? 'active' : '' }}"><i
                                 class='bx bx-folder nav_icon'></i> <span class="nav_name">Cursos</span>
 
 
                             {{-- !! FALTA PONER CLASE ACTIVE CUANDO DEFINAMOS LAS RUTAS --}}
-                        </a> <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span
-                                class="nav_name">Estadísticas</span> </a> <a href="#" class="nav_link"> <i
-                                class='bx bx-medal nav_icon'></i> <span class="nav_name">Logros</span> </a> <a
-                            href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span
-                                class="nav_name">Editar perfil</span> </a> </div>
+                        </a> <a href="{{ route('analytics') }}"
+                            class="nav_link {{ request()->routeIs('analytics') ? 'active' : '' }}""> <i
+                                class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Estadísticas</span> </a>
+                        <a href="#" class="nav_link"> <i class='bx bx-medal nav_icon'></i> <span
+                                class="nav_name">Logros</span> </a> <a href="#" class="nav_link"> <i
+                                class='bx bx-user nav_icon'></i> <span class="nav_name">Editar perfil</span> </a>
+                    </div>
                 </div> <a class="nav_link" href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i
                         class='bx bx-log-out nav_icon'></i></a>

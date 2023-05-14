@@ -5,7 +5,7 @@
         <div class="container-login100" style="background-image: url({{ URL::asset('fondo.webp') }});">
             <div class="wrap-login100">
                 <span class="login100-form-logo">
-                    <h1 class="brandH1">Oye como va</h1>
+                    <h1 class="brandH1">Oye cómo va</h1>
                 </span>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
@@ -17,7 +17,8 @@
 
                     <div class="wrap-input100 validate-input" data-validate="Enter email">
                         <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            name="email" value="{{ old('email') }}" required autocomplete="email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -25,19 +26,22 @@
                         @enderror
                     </div>
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <label for="password">Password</label>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <label for="password">Contraseña</label>
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
+                            name="password" required autocomplete="new-password">
                         @error('password')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                    <div class="wrap-input100 validate-input d-flex justify-content-start gap-2" data-validate="Enter email">
+                    <div class="wrap-input100 validate-input d-flex justify-content-start gap-2"
+                        data-validate="Enter email">
                         <label class="form-check-label" for="remember">
                             {{ __('Remember Me') }}
                         </label>
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                            {{ old('remember') ? 'checked' : '' }}>
 
                     </div>
                     <div class="container-login100-form-btn">
