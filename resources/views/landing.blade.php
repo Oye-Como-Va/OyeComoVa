@@ -23,18 +23,18 @@
 
     <div class="instructions">
         <div>
-            <span>1</span>
+            <span class = "p-2">1</span>
             <img src="{{ URL::asset('img/planing.png') }}" class="img-fluid">
             <p>Planifica tu calendario por horas y tareas</p>
         </div>
         <div>
-            <span>2</span>
+            <span class = "p-2">2</span>
             <img src="{{ URL::asset('img/workingArea.png') }}" class="img-fluid">
             <p>Usa el Working Area para iniciar el tiempo
             </p>
         </div>
         <div>
-            <span>3</span>
+            <span class = "p-2">3</span>
             <img src="{{ URL::asset('img/analytics.png') }}" class="img-fluid">
             <p>Comprueba tu rendimiento </p>
         </div>

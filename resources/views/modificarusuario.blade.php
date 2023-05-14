@@ -1,58 +1,47 @@
-
-
-@extends('templates.loginTemplate')
-@section('register')
+@extends('templates.general')
+@section('modificarUsuario')
     <div class="limiter">
-
-        <div class="container-login100" style="background-image: url({{ URL::asset('fondo.webp') }});">
+        <div class="container-login100">
             <div class="wrap-login100">
-                <span class="login100-form-logo">
-                    <h1 class="brandH1">Oye como va</h1>
-                </span>
-                <form method="POST" action="{{route('user-profile-information.update')}}">
-
+                <form method="POST" action="{{ route('user-profile-information.update') }}">
                     @method('PUT')
                     @csrf
-
-
-                    <span class="login100-form-title p-b-34 p-t-27">
+                    <h2 class="login100-form-title p-b-34 p-t-27">
                         Editar usuario
-                    </span>
-                    
+                    </h2>
                     <div class="wrap-input100 validate-input">
                         <label for="name">Nombre</label>
-                        <input  type="text" class="form-control" name="name" id="name" value="{{$user->name}}">
-                    
-                    </div>
+                        <input type="text" class="form-control" name="name" id="name" value="{{ $user->name }}">
 
+                    </div>
                     <div class="wrap-input100 validate-input">
                         <label for="surname">Apellido</label>
-                        <input  type="text" class="form-control" name="surname" id="surname" value="{{$user->surname}}">
-                    
+                        <input type="text" class="form-control" name="surname" id="surname"
+                            value="{{ $user->surname }}">
+
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter email">
                         <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" required autocomplete="email">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
+                            name="email" value="{{ $user->email }}" required autocomplete="email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
-                    
                     <div class="wrap-input100 validate-input">
                         <label for="phone">Telefono</label>
-                        <input  type="text" class="form-control" name="phone" id="phone" value="{{$user->phone}}">
-                    
-                    </div>
-                    
-                    <div class="container-login100-form-btn">
-                        <button type="submit" class="login100-form-btn">
-                            Modificar
-                        </button>
+                        <input type="text" class="form-control" name="phone" id="phone"
+                            value="{{ $user->phone }}">
 
                     </div>
+
+                    <button type="submit" class="mt-3 btn btn-info d-flex w-100 justify-content-center">
+                        Modificar
+                    </button>
+
                 </form>
             </div>
         </div>

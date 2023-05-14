@@ -104,7 +104,40 @@ class AnalyticsController extends Controller
             ->where('tasks.finished', $isCompleted)
             ->count();
     }
-    private function getDaysCount($workingArea){
+    private function getDaysCount($workingArea)
+    {
         return count($workingArea);
+    }
+
+    public function getWorkingAreas()
+    {
+        $user = User::findOrFail(Auth::id());
+
+        //Vamos a añadirle a los workingAreas las duraciones estimadas y reales 
+        $workingAreas = $user->working_areas;
+        foreach ($workingAreas as $workingArea) {
+            $end_time_real = Carbon::createFromFormat('H:i:s', $workingArea->end_time_real);
+            $start_time_real = Carbon::createFromFormat('H:i:s', $workingArea->start_time_real);
+            $end_time = Carbon::createFromFormat('H:i:s', $workingArea->end_time);
+            $start_time = Carbon::createFromFormat('H:i:s', $workingArea->start_time);
+
+            $duration_minutes = $end_time->diffInMinutes($start_time);
+            $duration_minutes_real = $end_time_real->diffInMinutes($start_time_real);
+            if ($duration_minutes >= 60) {
+                $duration = sprintf('%dh %02d m', floor($duration_minutes / 60), $duration_minutes % 60);
+            } else {
+                $duration = sprintf('%d m', $duration_minutes);
+            }
+
+            if ($duration_minutes_real >= 60) {
+                $durationReal = sprintf('%dh %02d m', floor($duration_minutes_real / 60), $duration_minutes_real % 60);
+            } else {
+                $durationReal = sprintf('%d m', $duration_minutes_real);
+            }
+
+            $workingArea->duration = $duration;
+            $workingArea->durationReal = $durationReal;
+        }
+        return view('analyticsTasks', @compact('workingAreas'));
     }
 }

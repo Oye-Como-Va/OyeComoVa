@@ -31,11 +31,3 @@ Para iniciar la aplicación:
 El seeder creará una serie de usuarios con contraseñas predeterminadas. Puede hacer uso de cualquiera de ellos mirando la contraseña en el archivo DatabaseSeeder.php, crear su propio usuario o probar con el siguiente:
 email: `juan@example.com`
 password: `password123`
-
-## Probar las funcionalidades desarrolladas hasta ahora
-
-Los casos de uso completados hasta la fecha y que puede testear son:
-
--   Login / register
--   Calendario: puede crear tareas, arrastrarlas para cambiarlas de fecha, editarlas y eliminarlas en el apartado del calendario.
--   Cursos y asignaturas: funcionalidad lista, falta mejorar la vista. Puede crear cursos y asignaturas

@@ -8,6 +8,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.scss', 'resources/css/custom.css', 'resources/css/main.css', 'resources/js/main.js', 'resources/css/util.css'])
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
         crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="{{ URL::asset('img/favicon.ico') }}">
 
 </head>
 
