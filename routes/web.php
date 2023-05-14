@@ -44,7 +44,7 @@ Route::prefix('/home')->middleware('auth')->group(
 
 
 
-        Route::get('/modificarusuario', [UserController::class, 'edit'] );
+        Route::get('/modificarusuario', [UserController::class, 'edit'])->name('user.edit');
 
 
         Route::get('/', function () {
@@ -77,5 +77,6 @@ Route::prefix('/home')->middleware('auth')->group(
         Route::get('/courses/{id}/subjects', [CoursesController::class, 'subjects'])->name('subjects');
 
         Route::get('/analytics', [AnalyticsController::class, 'analytics'])->name('analytics');
+        Route::get('/analytics/analyticsTasks', [AnalyticsController::class, 'getWorkingAreas'])->name('analyticsTasks');
     }
 );

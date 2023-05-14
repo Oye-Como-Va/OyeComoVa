@@ -39,6 +39,20 @@ document.addEventListener("DOMContentLoaded", function (event) {
         },
         eventDrop: function (info) {
             //esta función captura cuando un evento es arrastro a otro día. Por tanto, es un update de la fecha
+
+            //Si la tarea está finalizada, no podrá modificarse:
+            if (info.event.classNames[1] == "task-finished") {
+                toastr.warning(
+                    "Las tareas terminadas no pueden editarse",
+                    "¡Ya completaste esa tarea!"
+                );
+
+                setTimeout(() => {
+                    location.reload();
+                }, 1500);
+                return;
+            }
+
             let id = info.event.id;
             let date = moment(info.event.start).format("YYYY-MM-DD");
             let url = urlUpdate.replace("taskId", id); //la url de la ruta la definimos en la view de calendar
@@ -59,6 +73,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
         },
         eventClick: function (info) {
             //eventClick captura cuando se clica en un evento
+
+            //Si la tarea está finalizada, no podrá modificarse:
+            if (info.event.classNames[1] == "task-finished") {
+                toastr.warning(
+                    "Las tareas terminadas no pueden editarse",
+                    "¡Ya completaste esa tarea!"
+                );
+                return;
+            }
+
             const editTask = new bootstrap.Modal(
                 document.getElementById("editTask")
             );
@@ -77,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 headers: { "X-CSRF-Token": tokenUpdate },
                 dataType: "json",
                 success: function ({ taskEdit, subject, course }) {
-                    console.log(taskEdit);
                     document
                         .getElementById("formEdit")
                         .setAttribute("action", urlSave);
