@@ -9,40 +9,41 @@
                 <span class="login100-form-logo">
                     <h1 class="brandH1">Oye como va</h1>
                 </span>
-                <form method="POST" action="{{ route('user.update', ['id' => $user->id]) }}">
+                <form method="POST" action="{{route('user-profile-information.update')}}">
 
-
+                    @method('PUT')
                     @csrf
 
 
                     <span class="login100-form-title p-b-34 p-t-27">
                         Editar usuario
                     </span>
-
+                    
                     <div class="wrap-input100 validate-input">
                         <label for="name">Nombre</label>
-                        <input  type="text" class="form-control" name="name" id="name">
+                        <input  type="text" class="form-control" name="name" id="name" value="{{$user->name}}">
                     
                     </div>
 
                     <div class="wrap-input100 validate-input">
                         <label for="surname">Apellido</label>
-                        <input  type="text" class="form-control" name="surname" id="surname">
+                        <input  type="text" class="form-control" name="surname" id="surname" value="{{$user->surname}}">
                     
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter email">
                         <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$user->email}}" required autocomplete="email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
                     </div>
+                    
                     <div class="wrap-input100 validate-input">
                         <label for="phone">Telefono</label>
-                        <input  type="text" class="form-control" name="phone" id="phone">
+                        <input  type="text" class="form-control" name="phone" id="phone" value="{{$user->phone}}">
                     
                     </div>
                     

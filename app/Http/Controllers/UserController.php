@@ -3,24 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Auth;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function edit($id)
+    public function edit()
     {
-        $user = User::findOrFail($id);
+        $user = $user = User::findOrFail(Auth::id());
 
         return view('modificarusuario', compact('user'));
     }
 
-    public function update(UpdateUserRequest $request, UpdateUserProfileInformation $updater)
-    {
-        $user = \Illuminate\Support\Facades\Auth::user();
+   // public function update(UpdateUserRequest $request, UpdateUserProfileInformation $updater)
+   // {
+      //  $user = \Illuminate\Support\Facades\Auth::user();
 
-        $updater->update($user, $request->all());
+     //  $updater->update($user, $request->all());
 
-        return redirect()->back()->with('success', 'User profile updated successfully!');
-    }
+      //  return redirect()->back()->with('success', 'User profile updated successfully!');
+  //  }
 }
