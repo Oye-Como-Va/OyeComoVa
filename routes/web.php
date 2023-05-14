@@ -44,7 +44,7 @@ Route::prefix('/home')->middleware('auth')->group(
 
 
 
-        Route::get('/modificarusuario', [UserController::class, 'edit'] );
+        Route::get('/modificarusuario', [UserController::class, 'edit'])->name('user.edit');
 
 
         Route::get('/', function () {
