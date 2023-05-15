@@ -43,7 +43,7 @@ class AnalyticsController extends Controller
 
     private function getDelayedTasks($user)
     {
-        return $user->tasks()->where('date', '<', now())->get();
+        return $user->tasks()->where('date', '<', now())->where('finished', 0)->get();
     }
 
     private function calculateWorkingTime($workingAreas)

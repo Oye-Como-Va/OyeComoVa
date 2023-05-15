@@ -28,6 +28,29 @@ INSERT INTO tasks (name, description, subject_id) VALUES
 ('Tarea 6', 'Descripción de la tarea 6', 3),
 ('Tarea 7', 'Descripción de la tarea 7', 4);
 
+
+
+INSERT INTO calendars (user_id) VALUES
+(1),
+(2),
+(3),
+(1),
+(4),
+(2),
+(3);
+
+
+INSERT INTO task_user (date, start_time, end_time, task_id, user_id) VALUES
+('2023-05-01', '10:00:00', '11:30:00', 1, 1),
+('2023-05-01', '11:30:00', '12:30:00', 2, 1),
+('2023-05-02', '14:00:00', '16:00:00', 3, 2),
+('2023-05-02', '16:30:00', '18:00:00', 4, 2),
+('2023-05-03', '09:00:00', '10:30:00', 5, 3),
+('2023-05-04', '13:00:00', '14:30:00', 6, 4),
+('2023-05-04', '14:30:00', '16:00:00', 7, 4);
+
+
+
 INSERT INTO working_areas (date, date_real, start_time, start_time_real, end_time, end_time_real, user_id, task_id) VALUES 
 ('2023-04-25', '2023-04-25', '08:00:00', '08:10:00', '14:00:00', '14:10:00', 1, 1),
 ('2023-04-25', '2023-04-25', '09:00:00', '09:15:00', '13:00:00', '13:15:00', 2, 2),
@@ -55,24 +78,11 @@ INSERT INTO notes (note, color, date, time, working_area_id) VALUES
 ('Nota 6', 'rojo', '2023-04-30', '09:00:00', 3),
 ('Nota 7', 'morado', '2023-04-30', '15:20:00', 2);
 
-INSERT INTO achievements (name, date, image, description, analytic_id) VALUES 
-('Achievement 1', '2022-01-01', 'image1.jpg', 'Description for achievement 1', 1),
-('Achievement 2', '2022-01-02', 'image2.jpg', 'Description for achievement 2', 2),
-('Achievement 3', '2022-01-03', 'image3.jpg', 'Description for achievement 3', 3),
-('Achievement 4', '2022-01-04', 'image4.jpg', 'Description for achievement 4', 4),
-('Achievement 5', '2022-01-05', 'image5.jpg', 'Description for achievement 5', 5),
-('Achievement 6', '2022-01-06', 'image6.jpg', 'Description for achievement 6', 6),
-('Achievement 7', '2022-01-07', 'image7.jpg', 'Description for achievement 7', 7);
-
-
-INSERT INTO user_achievement (user_id, achievement_id) VALUES
-(1, 2),
-(2, 4),
-(3, 1),
-(4, 3),
-(2, 5),
-(1, 6),
-(3, 4);
+INSERT INTO achievements (name, date, image, description, analytic_id) VALUES
+('Primera tarea completada', '2022-01-01', 'uno.png', 'Primera tarea completada con éxito', 1),
+('Cinco tareas completadas', '2022-01-02', 'cinco.png', 'Has completado tus cinco primeras tareas', 2),
+('El tryhard', '2022-01-03', 'try.png', 'Has trabajado más tiempo del programado en alguna tarea', 3),
+('El abarcador', '2022-01-04', 'abarcador.png', 'Tienes más de cinco tareas pendientes', 4),
 
 INSERT INTO course_user (user_id, course_id) VALUES
 (1, 4),

@@ -64,6 +64,13 @@ a {
     color: var(--first-color-light) !important;
     font-size: 2rem;
 }
+.colorCustom2 {
+    color: var(--first-color-light) !important;
+}
+.hr {
+    width: 80%;
+
+}
 .card:hover .colorCustom {
     font-size: 2.5rem;
     transition: 0.5s;

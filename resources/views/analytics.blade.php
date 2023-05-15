@@ -1,12 +1,17 @@
 @extends('templates.general')
 @section('main')
-    <h1>Estadísticas</h1>
-    <div class="row mt-5">
-        <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
-            <div class="card w-100 boxshadow">
-                <div class="card-body">
-                    <h5 class="card-title">Días totales trabajados</h5>
-                    <p class="card-text colorCustom">{{ $totalDaysWorked }}</p>
+
+    <div class="container">
+        <h1>Tus analíticas</h1>
+
+        <div class="row mt-5">
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
+                <div class="card w-100 boxshadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Días totales trabajados</h5>
+                        <p class="card-text colorCustom">{{ $totalDaysWorked }}</p>
+                    </div>
+
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnalyticsController;
+use App\Http\Controllers\AchievementsController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TasksController;
 use App\Http\Controllers\UserController;
@@ -71,6 +72,7 @@ Route::prefix('/home')->middleware('auth')->group(
         Route::post('/workingArea/create_note', [WorkingAreaController::class, 'create_note'])->name('create_note');
 
         //courses
+
         Route::get('/courses', [CoursesController::class, 'courses'])->name('courses');
         Route::post('/courses', [CoursesController::class, 'create_course'])->name('create_course');
         Route::post('/courses/create', [CoursesController::class, 'create_subject'])->name('create_subject');
@@ -78,5 +80,6 @@ Route::prefix('/home')->middleware('auth')->group(
 
         Route::get('/analytics', [AnalyticsController::class, 'analytics'])->name('analytics');
         Route::get('/analytics/analyticsTasks', [AnalyticsController::class, 'getWorkingAreas'])->name('analyticsTasks');
+       Route::get('/achievements', [AchievementsController::class, 'show_achievements'])->name('achievements');
     }
 );
