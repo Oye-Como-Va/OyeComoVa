@@ -26,10 +26,10 @@ return new class extends Migration
             ' FOR EACH ROW '.
             ' BEGIN ' .
                 ' IF NEW.completed_tasks > 1 THEN '.
-                    ' INSERT INTO achievement_user (user_id, achievement_id) VALUES (NEW.id, 1); '.
+                    ' INSERT INTO achievement_user (user_id, achievement_id, created_at) VALUES (NEW.id, 1, NOW()); '.
                 ' END IF; ' .
                 ' IF NEW.completed_tasks > 5 THEN ' .
-                    ' INSERT INTO achievement_user (user_id, achievement_id) VALUES (NEW.id, 2); ' .
+                    ' INSERT INTO achievement_user (user_id, achievement_id, created_at) VALUES (NEW.id, 2, NOW()); ' .
                 ' END IF; ' .
 
             ' END; '
