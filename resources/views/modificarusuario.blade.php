@@ -38,7 +38,7 @@
 
                     </div>
 
-                    <button type="submit" class="mt-3 btn btn-info d-flex w-100 justify-content-center">
+                    <button type="submit" class="mt-3 btn btn-main d-flex w-100 justify-content-center">
                         Modificar
                     </button>
 

@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end">
-                            <button class="btn btn-info" type="submit">Crear tarea</button>
+                            <button class="btn btn-main" type="submit">Crear tarea</button>
                         </div>
                     </div>
             </div>
@@ -133,7 +133,7 @@
                             </div>
                         </div>
                         <div class="col-12 d-flex justify-content-end align-items-center gap-2">
-                            <button class="btn btn-info" type="submit">Editar tarea</button>
+                            <button class="btn btn-main" type="submit">Editar tarea</button>
                 </form>
                 <form method="POST" id="formDelete" class="d-flex m-0">
                     @csrf

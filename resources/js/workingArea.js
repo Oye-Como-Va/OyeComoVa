@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
               <textarea name="note" placeholder="Escribe tu nota aquí..."></textarea>
               <input type="color" class = "w-100" name="color" value = "#FFFFCC"/>
               <input type="hidden" name="working_id" value="${working_id}"/>
-              <button class = "btn btn-info" type="submit">Guardar</button></div>
+              <button class = "btn btn-main" type="submit">Guardar</button></div>
             </form>
           </div>
         `;
