@@ -114,7 +114,10 @@ class AnalyticsController extends Controller
         $user = User::findOrFail(Auth::id());
 
         //Vamos a añadirle a los workingAreas las duraciones estimadas y reales 
-        $workingAreas = $user->working_areas;
+        $workingAreas = $user->working_areas()->whereHas('tasks', function ($query) {
+            $query->where('finished', 1);
+        })->get();
+
         foreach ($workingAreas as $workingArea) {
             $end_time_real = Carbon::createFromFormat('H:i:s', $workingArea->end_time_real);
             $start_time_real = Carbon::createFromFormat('H:i:s', $workingArea->start_time_real);

@@ -210,7 +210,6 @@ a {
     width: 10rem;
 }
 .cardContainer:hover .card {
-    box-shadow: 5px 5px 1px var(--first-color-light);
     transform: translateY(-0.5rem);
 }
 
