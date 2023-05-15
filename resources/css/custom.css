@@ -200,6 +200,11 @@ a {
     align-items: center;
     justify-content: space-evenly;
 }
+
+.cardContainer:hover .card {
+    box-shadow: 5px 5px 1px var(--first-color-light);
+    transform: translateY(-0.5rem);
+}
 .card {
     position: relative;
     border-radius: 0.9rem;
