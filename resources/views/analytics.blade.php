@@ -1,7 +1,7 @@
 @extends('templates.general')
 @section('main')
 
-    <div class="container">
+
         <h1>Tus analíticas</h1>
 
         <div class="row mt-5">
@@ -14,7 +14,7 @@
 
                 </div>
             </div>
-        </div>
+
         <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
             <div class="card w-100 boxshadow">
                 <div class="card-body">
