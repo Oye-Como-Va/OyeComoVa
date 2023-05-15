@@ -57,7 +57,6 @@ class WorkingAreaController extends Controller
 
     public function create_working(Request $request)
     {
-        //!Comprobar si existe la tarea en los working areas para no duplicar
 
         $user = User::findOrFail(Auth::id());
         $task = $user->tasks->find($request->id);

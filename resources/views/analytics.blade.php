@@ -1,20 +1,18 @@
 @extends('templates.general')
 @section('main')
+    <h1>Tus analíticas</h1>
 
-    <div class="container">
-        <h1>Tus analíticas</h1>
-
-        <div class="row mt-5">
-            <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
-                <div class="card w-100 boxshadow">
-                    <div class="card-body">
-                        <h5 class="card-title">Días totales trabajados</h5>
-                        <p class="card-text colorCustom">{{ $totalDaysWorked }}</p>
-                    </div>
-
+    <div class="row mt-5">
+        <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
+            <div class="card w-100 boxshadow">
+                <div class="card-body">
+                    <h5 class="card-title">Días totales trabajados</h5>
+                    <p class="card-text colorCustom">{{ $totalDaysWorked }}</p>
                 </div>
+
             </div>
         </div>
+
         <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
             <div class="card w-100 boxshadow">
                 <div class="card-body">
@@ -26,8 +24,10 @@
         <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
             <a class="card w-100 boxshadow" href={{ route('analyticsTasks') }}>
                 <div class="card-body">
-                    <h5 class="card-title">Número de tareas completadas</h5>
-                    <p class="card-text colorCustom">{{ $completedTasksCount }}</p>
+                    <h5 class="card-title d-flex align-items-center">Número de tareas completadas (pulsa para ver los datos)
+                    </h5>
+                    <p class="card-text colorCustom d-flex justify-content-between">{{ $completedTasksCount }}</p>
+
                 </div>
             </a>
         </div>
