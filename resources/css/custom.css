@@ -27,6 +27,16 @@ body {
     font-family: var(--body-font);
 }
 
+.btn-main {
+    background-color: var(--first-color-light);
+    color: var(--white-color);
+}
+
+.btn-main:hover {
+    background-color: var(--first-color-dark);
+    color: white;
+}
+
 .container {
     position: relative;
     /* margin: calc(var(--header-height) + 2rem) 0 0 0; */
@@ -69,7 +79,6 @@ a {
 }
 .hr {
     width: 80%;
-
 }
 .card:hover .colorCustom {
     font-size: 2.5rem;
@@ -444,7 +453,7 @@ button:hover {
 }
 
 .workingStart .card:hover:before {
-    transform: scale(100);
+    transform: scale(500);
 }
 
 .workingStart .cardContainer:hover a {
