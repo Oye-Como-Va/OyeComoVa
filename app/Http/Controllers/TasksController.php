@@ -23,9 +23,15 @@ class TasksController extends Controller
         //genero un array de objetos con las tareas en el formato que requiere fullcalendar:
         foreach ($user->tasks as $task) {
             $color = "aquamarine";
+            $classNames = "";
+            //Si tiene asignatura, le ponemos el color de la asignatura
             if (isset($task->subject_id)) {
                 $subject = Subject::findOrFail($task->subject_id);
                 $color = $subject->color;
+            }
+            //Si la tarea está terminada, le metemos una clase diferente 
+            if ($task->finished) {
+                $classNames = ["event", "task-finished"];
             }
             $tasks[] = [
                 'id' => $task->id,
@@ -33,6 +39,7 @@ class TasksController extends Controller
                 'start' => $task->pivot->date . 'T' . $task->pivot->start_time,
                 'end' => $task->pivot->date . 'T' . $task->pivot->end_time,
                 'color' => $color,
+                'classNames' => $classNames,
                 'description' => $task->description
             ];
         }
@@ -45,7 +52,7 @@ class TasksController extends Controller
             DB::beginTransaction();
             $user = User::findOrFail(Auth::id());
             $request->validate([
-                'name' => 'required|regex:/^[\pL\s\-]+$/u|min:1|max:255',
+                'name' => 'required|regex:/^[\pL\d\s\-]+$/u|min:1|max:255',
                 'description' => 'required|string|min:1',
                 'date' => 'required|date_format:Y-m-d',
                 'start_time' => 'required|date_format:H:i',

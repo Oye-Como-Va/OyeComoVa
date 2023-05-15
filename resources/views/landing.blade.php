@@ -1,4 +1,4 @@
-@extends('templates.template')
+@extends('templates.loginTemplate')
 
 @section('landing')
     <div class="welcome">
@@ -23,25 +23,63 @@
 
     <div class="instructions">
         <div>
-            <span>1</span>
+            <span class = "p-2">1</span>
             <img src="{{ URL::asset('img/planing.png') }}" class="img-fluid">
             <p>Planifica tu calendario por horas y tareas</p>
         </div>
         <div>
-            <span>2</span>
+            <span class = "p-2">2</span>
             <img src="{{ URL::asset('img/workingArea.png') }}" class="img-fluid">
             <p>Usa el Working Area para iniciar el tiempo
             </p>
         </div>
         <div>
-            <span>3</span>
+            <span class = "p-2">3</span>
             <img src="{{ URL::asset('img/analytics.png') }}" class="img-fluid">
             <p>Comprueba tu rendimiento </p>
         </div>
     </div>
 
-    <div class="invite">
+    <div class="invite  text-center">
 
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <span class="login100-form-logo">
+                    <h1 class="brandH1">Formulario de contacto</h1>
+                </span>
+                <form method="POST" action="{{route('contacto')}}">
+                    @csrf
+
+
+                    <span class="login100-form-title p-b-34 p-t-27">
+                        Consulta tu duda
+                    </span>
+
+                    <div class="wrap-input100 validate-input">
+                        <label for="name">Nombre de contacto</label>
+                        <input  type="text" class="form-control" name="name">
+                    
+                    </div>
+
+                    <div class="wrap-input100 validate-input">
+                        <label for="msg">Mensaje de la duda</label>
+                        <input  type="text" class="form-control" name="msg">
+                    
+                    </div>
+                    
+                    <div class="container-login100-form-btn">
+                        <button type="submit" class="login100-form-btn">
+                            Enviar
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+        
     </div>
 
 

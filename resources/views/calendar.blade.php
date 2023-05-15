@@ -145,6 +145,7 @@
     </div>
     </div>
     </div>
+    @vite(['resources/js/calendar.js'])
 @endsection
 <script>
     //Variables que utiliza app.js: 

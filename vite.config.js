@@ -11,6 +11,8 @@ export default defineConfig({
                 "resources/css/main.css",
                 "resources/js/main.js",
                 "resources/css/util.css",
+                "resources/js/workingArea.js",
+                "resources/js/calendar.js",
             ],
             refresh: true,
         }),

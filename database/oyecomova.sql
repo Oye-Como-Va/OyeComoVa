@@ -29,6 +29,7 @@ INSERT INTO tasks (name, description, subject_id) VALUES
 ('Tarea 7', 'Descripción de la tarea 7', 4);
 
 
+
 INSERT INTO calendars (user_id) VALUES
 (1),
 (2),
@@ -49,7 +50,8 @@ INSERT INTO task_user (date, start_time, end_time, task_id, user_id) VALUES
 ('2023-05-04', '14:30:00', '16:00:00', 7, 4);
 
 
-INSERT INTO working_areas (date, date_real, start_time, start_time_real, end_time, end_time_real, user_id, task_id) VALUES
+
+INSERT INTO working_areas (date, date_real, start_time, start_time_real, end_time, end_time_real, user_id, task_id) VALUES 
 ('2023-04-25', '2023-04-25', '08:00:00', '08:10:00', '14:00:00', '14:10:00', 1, 1),
 ('2023-04-25', '2023-04-25', '09:00:00', '09:15:00', '13:00:00', '13:15:00', 2, 2),
 ('2023-04-26', '2023-04-26', '10:00:00', '10:30:00', '17:00:00', '17:30:00', 3, 1),
@@ -58,6 +60,14 @@ INSERT INTO working_areas (date, date_real, start_time, start_time_real, end_tim
 ('2023-04-27', '2023-04-27', '08:00:00', '08:30:00', '13:00:00', '13:30:00', 6, 4),
 ('2023-04-28', '2023-04-28', '09:00:00', '09:25:00', '15:00:00', '15:25:00', 7, 3);
 
+INSERT INTO task_user (date, start_time, end_time, task_id, user_id) VALUES
+('2023-05-01', '10:00:00', '11:30:00', 1, 1),
+('2023-05-01', '11:30:00', '12:30:00', 2, 1),
+('2023-05-02', '14:00:00', '16:00:00', 3, 2),
+('2023-05-02', '16:30:00', '18:00:00', 4, 2),
+('2023-05-03', '09:00:00', '10:30:00', 5, 3),
+('2023-05-04', '13:00:00', '14:30:00', 6, 4),
+('2023-05-04', '14:30:00', '16:00:00', 7, 4);
 
 INSERT INTO notes (note, color, date, time, working_area_id) VALUES
 ('Nota 1', 'amarillo', '2023-04-27', '08:30:00', 1),
