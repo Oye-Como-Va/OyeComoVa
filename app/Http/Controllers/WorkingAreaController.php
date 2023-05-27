@@ -16,11 +16,19 @@ class WorkingAreaController extends Controller
     {
         $user = User::findOrFail(Auth::id());
         $now = now();
-        $orderedTasks = $user->tasks()->where('finished', false)->where('date', '>', $now->toDateString())->orWhere(function ($query) use ($now) {
-            $query->where('date', $now->toDateString())
-                ->where('start_time', '>', $now->toTimeString());
-        })->with('subjects.course')->orderBy('task_user.date', 'asc')->orderBy('task_user.start_time', 'asc')->get();
-
+        $orderedTasks = $user->tasks()
+            ->where(function ($query) use ($now) {
+                $query->where('date', '>', $now->toDateString())
+                    ->orWhere(function ($query) use ($now) {
+                        $query->where('date', $now->toDateString())
+                            ->where('start_time', '>', $now->toTimeString());
+                    });
+            })
+            ->where('finished', false)
+            ->with('subjects.course')
+            ->orderBy('date', 'asc')
+            ->orderBy('start_time', 'asc')
+            ->get();
 
         $nextTask = $orderedTasks->shift();
 
